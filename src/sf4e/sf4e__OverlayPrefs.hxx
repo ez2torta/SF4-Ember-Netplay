@@ -5,6 +5,7 @@
 #include <array>
 #include <string>
 #include <optional>
+#include <vector>
 #include <tuple>
 #include "../common/GamepadIdentity.hxx"
 #include <nlohmann/json.hpp>
@@ -22,6 +23,9 @@ namespace OverlayPrefs {
 	// combos are built from.
 	const int ROUND_COUNT_OPTIONS = 6;
 	const int ROUND_TIME_OPTIONS = 5;
+	// How many combinations the fighter select may pin. Each entry is a whole
+	// pick, so the list has no holes and no fixed size.
+	const int FavouriteLimit = 10;
 
 	struct CharaPick {
 		uint8_t charaID = 0;
@@ -47,6 +51,9 @@ namespace OverlayPrefs {
 		// What each fighter last used, indexed by charaID. Switching fighter
 		// restores that fighter's entry; fighters[lobby.charaID] equals lobby.
 		std::array<CharaPick, selection::FighterCount> fighters;
+		// Combinations pinned in the fighter select, in the order they were
+		// added. Duplicates are allowed when any field differs.
+		std::vector<CharaPick> favourites;
 		int stageID = 0;
 		// The stages Random may land on (saved as the list of those taken out).
 		selection::RandomPool randomPool;
@@ -62,9 +69,9 @@ namespace OverlayPrefs {
 		std::optional<gamepads::Identity> deviceIdentity;
 		bool controllerLayer = true;
 		bool operator==(const Data& other) const {
-            return std::tie(lobby, fighters, stageID, randomPool, lobbyRoundCountIdx, lobbyRoundTimeIdx,
+            return std::tie(lobby, fighters, favourites, stageID, randomPool, lobbyRoundCountIdx, lobbyRoundTimeIdx,
                 lobbyEditionSelect, deviceIdx, deviceType, deviceIdentity, controllerLayer) ==
-                std::tie(other.lobby, other.fighters, other.stageID, other.randomPool,
+                std::tie(other.lobby, other.fighters, other.favourites, other.stageID, other.randomPool,
                     other.lobbyRoundCountIdx, other.lobbyRoundTimeIdx, other.lobbyEditionSelect,
                     other.deviceIdx, other.deviceType, other.deviceIdentity, other.controllerLayer);
         }

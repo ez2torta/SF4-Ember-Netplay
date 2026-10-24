@@ -140,8 +140,83 @@ static int CheckPerFighterPicks() {
     return failures;
 }
 
+// Pinned combinations live with the rest of the preferences: whole picks, a
+// cap of ten, and the same cleanup of removed custom content.
+static int CheckFavourites() {
+    namespace Prefs = sf4e::OverlayPrefs;
+    int failures = 0;
+    const auto check = [&](bool value, const char* message) {
+        if (!value) { ++failures; std::printf("FAIL: %s\n", message); }
+    };
+    const int alternateEdition = [&] {
+        for (int edition : sf4e::selection::AllowedEditions(0, true))
+            if (edition != sf4e::selection::UltraEdition) return edition;
+        return sf4e::selection::UltraEdition;
+    }();
+    Prefs::Data data;
+    for (int n = 0; n < Prefs::FavouriteLimit; ++n) {
+        Prefs::CharaPick pick;
+        pick.charaID = static_cast<uint8_t>(n);
+        pick.costume = 1;
+        pick.color = 2;
+        pick.ultraCombo = 1;
+        pick.personalAction = n == 0 ? 255 : 3;
+        pick.winQuote = n == 1 ? 255 : 0;
+        pick.handicap = 2;
+        pick.unc_edition = n == 2 ? static_cast<uint8_t>(alternateEdition) : sf4e::selection::UltraEdition;
+        data.favourites.push_back(pick);
+    }
+    Prefs::Clamp(data);
+    Prefs::Data loaded;
+    Prefs::FromJson(Prefs::ToJson(data), loaded);
+    Prefs::Clamp(loaded);
+    check(loaded.favourites == data.favourites, "favourites did not round-trip");
+    check(loaded.favourites[0].personalAction == 255 && loaded.favourites[1].winQuote == 255,
+        "a sentinel did not round-trip");
+    check(loaded.favourites[2].unc_edition == alternateEdition, "a valid edition was not kept");
+    auto changed = loaded;
+    changed.favourites[3].costume = 2;
+    check(changed != loaded, "preference equality ignored the favourites");
+    // An unusable edition becomes USF4, like a remembered fighter, and the cap
+    // holds both when parsing and when clamping.
+    Prefs::Data badEdition;
+    Prefs::CharaPick bad;
+    bad.unc_edition = 255;
+    badEdition.favourites.push_back(bad);
+    Prefs::Clamp(badEdition);
+    check(badEdition.favourites[0].unc_edition == sf4e::selection::UltraEdition,
+        "an invalid favourite edition was kept");
+    auto extra = Prefs::ToJson(data);
+    const auto one = extra["favourites"][0];
+    extra["favourites"].push_back(one);
+    Prefs::Data parsedEleven;
+    Prefs::FromJson(extra, parsedEleven);
+    check(parsedEleven.favourites.size() == Prefs::FavouriteLimit, "parsing kept an eleventh favourite");
+    Prefs::Data clampedEleven = data;
+    clampedEleven.favourites.push_back(bad);
+    Prefs::Clamp(clampedEleven);
+    check(clampedEleven.favourites.size() == Prefs::FavouriteLimit, "clamping kept an eleventh favourite");
+    // Custom content removed from disk is cleaned out of a favourite too.
+    Prefs::Data custom;
+    Prefs::CharaPick customPick;
+    customPick.charaID = 0;
+    customPick.costume = 11;
+    customPick.color = 30;
+    custom.favourites.push_back(customPick);
+    Prefs::Clamp(custom);
+    check(custom.favourites[0].costume == 0 && custom.favourites[0].color == 0,
+        "a removed custom costume stayed in a favourite");
+    // An old profile without the key starts with no favourites.
+    Prefs::Data old;
+    old.favourites.push_back(customPick);
+    Prefs::FromJson({{"stageID", 1}}, old);
+    check(old.favourites.empty(), "an old profile kept stale favourites");
+    return failures;
+}
+
 int main() {
     if (CheckPerFighterPicks()) return 1;
+    if (CheckFavourites()) return 1;
     HWND window = CreateWindowW(L"STATIC", L"Ember display reset regression", WS_OVERLAPPEDWINDOW,
         0, 0, 640, 480, nullptr, nullptr, GetModuleHandleW(nullptr), nullptr);
     if (!window) return 2;

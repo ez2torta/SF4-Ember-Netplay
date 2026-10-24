@@ -81,6 +81,7 @@ namespace OverlayPrefs {
 			};
 			costume(data.lobby);
 			for (auto& fighter : data.fighters) costume(fighter);
+			for (auto& favourite : data.favourites) costume(favourite);
 			if (selection::IsCustomStage(data.stageID) && !installed->HasStage(data.stageID))
 				data.stageID = Data{}.stageID;
 		}
@@ -127,6 +128,11 @@ namespace OverlayPrefs {
             ClampChara(data.fighters[id], true);
         }
         if (data.lobby.charaID < data.fighters.size()) data.fighters[data.lobby.charaID] = data.lobby;
+        // A favourite keeps the edition it was saved with, like a remembered
+        // fighter; applying it later normalizes against the room's rule.
+        for (auto& favourite : data.favourites) ClampChara(favourite, true);
+        if (data.favourites.size() > static_cast<std::size_t>(FavouriteLimit))
+            data.favourites.resize(FavouriteLimit);
         data.stageID = selection::NormalizeStageChoice(data.stageID);
         data.randomPool = selection::RandomPool(std::vector<std::int64_t>(data.randomPool.Excluded().begin(), data.randomPool.Excluded().end()));
         if (data.lobbyRoundCountIdx < 0 || data.lobbyRoundCountIdx >= ROUND_COUNT_OPTIONS) data.lobbyRoundCountIdx = 1;
@@ -151,6 +157,14 @@ namespace OverlayPrefs {
 			out.fighters[out.lobby.charaID] = out.lobby;
 		}
 		out.stageID = selection::PreferenceStage(j, "stageID", out.stageID);
+		out.favourites.clear();
+		if (j.contains("favourites") && j["favourites"].is_array()) {
+			for (const auto& row : j["favourites"]) {
+				if (out.favourites.size() >= static_cast<std::size_t>(FavouriteLimit)) break;
+				out.favourites.emplace_back();
+				CharaFromJson(row, out.favourites.back());
+			}
+		}
 		if (j.contains("randomStageExcluded") && j["randomStageExcluded"].is_array()) {
 			std::vector<std::int64_t> excluded;
 			for (const auto& id : j["randomStageExcluded"]) if (id.is_number_integer()) excluded.push_back(id.get<std::int64_t>());
@@ -189,6 +203,12 @@ namespace OverlayPrefs {
 			j["fighters"].push_back(std::move(row));
 		}
 		j["stageID"] = data.stageID;
+		j["favourites"] = nlohmann::json::array();
+		for (const auto& favourite : data.favourites) {
+			nlohmann::json row;
+			CharaToJson(row, favourite);
+			j["favourites"].push_back(std::move(row));
+		}
 		j["randomStageExcluded"] = nlohmann::json::array();
 		for (int id : data.randomPool.Excluded()) j["randomStageExcluded"].push_back(id);
 
