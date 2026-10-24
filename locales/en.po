@@ -2943,6 +2943,10 @@ msgid "room.table_options.detail"
 msgstr "Table {0}: Delay, connection check, table rules, queue and watching for this table."
 msgid "room.legend_fighter"
 msgstr "Fighter"
+
+msgid "room.legend_favourites"
+msgstr "Favourites"
+
 msgid "room.legend_options"
 msgstr "Options"
 msgid "room.choice.watch"

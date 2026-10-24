@@ -3172,6 +3172,9 @@ msgstr "테이블 {0}: 이 테이블의 지연, 연결 확인, 규칙, 대기열
 msgid "room.legend_fighter"
 msgstr "캐릭터"
 
+msgid "room.legend_favourites"
+msgstr "즐겨찾기"
+
 msgid "room.legend_options"
 msgstr "옵션"
 

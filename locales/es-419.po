@@ -2829,6 +2829,10 @@ msgid "room.table_options.detail"
 msgstr "Mesa {0}: Retraso, prueba de conexión, reglas, cola y observación de esta mesa."
 msgid "room.legend_fighter"
 msgstr "Luchador"
+
+msgid "room.legend_favourites"
+msgstr "Favoritos"
+
 msgid "room.legend_options"
 msgstr "Opciones"
 msgid "room.choice.watch"

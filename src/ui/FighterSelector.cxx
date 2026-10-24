@@ -618,7 +618,14 @@ bool FighterSelector::Draw(selection::Pick& pick,bool editionSelect,SelectionArt
  // Delete unpins the focused favourite instead of leaving the seat.
  const bool leaveRemoves=a.kind==MenuAction::Shortcut&&a.delta==static_cast<int>(MenuInput::Leave)&&
   screen=="favourites"&&hasFavourites&&!favourites->picks->empty();
- if(a.kind==MenuAction::Close||(a.kind==MenuAction::Shortcut&&!leaveRemoves))ForwardMenuAction(a);
+ // RB jumps between the roster and the favourites page; elsewhere it is
+ // consumed so the room's own shortcuts do not see it.
+ const bool favouriteShortcut=a.kind==MenuAction::Shortcut&&a.delta==static_cast<int>(MenuInput::Favourite);
+ if(a.kind==MenuAction::Close||(a.kind==MenuAction::Shortcut&&!leaveRemoves&&!favouriteShortcut))ForwardMenuAction(a);
+ if(favouriteShortcut){
+  if(screen=="roster")nav.Push("favourites");
+  else if(screen=="favourites")nav.Return();
+ }
  // Opened for one change, Back from its page goes back to where it came from.
  if(!openOn_.empty()&&a.kind==MenuAction::Returned&&screen==openOn_)ForwardMenuAction({MenuAction::Close});
  // A pick is done: back to where fighter select was opened from.

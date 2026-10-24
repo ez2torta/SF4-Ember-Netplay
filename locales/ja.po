@@ -3172,6 +3172,9 @@ msgstr "対戦席{0}：この対戦席の遅延、接続テスト、ルール、
 msgid "room.legend_fighter"
 msgstr "キャラ"
 
+msgid "room.legend_favourites"
+msgstr "お気に入り"
+
 msgid "room.legend_options"
 msgstr "設定"
 

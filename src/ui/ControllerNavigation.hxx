@@ -12,7 +12,7 @@ struct ControllerSample {
     // hands a sample's buttons to the menu unchanged; the asserts below hold
     // the two enums together. Menu (Start) opens Ember and never reaches a menu.
     enum Button : std::uint32_t { Up = 1, Down = 2, Left = 4, Right = 8, Confirm = 16, Back = 32, Menu = 64,
-        Fighter = 128, Options = 256, Chat = 512 };
+        Fighter = 128, Options = 256, Chat = 512, Favourite = 2048 };
     int deviceType = -1, deviceIndex = -1;
     bool connected = false;
     std::uint32_t buttons = 0;
@@ -23,16 +23,19 @@ static_assert(ControllerSample::Up == MenuInput::Up && ControllerSample::Down ==
     ControllerSample::Left == MenuInput::Left && ControllerSample::Right == MenuInput::Right &&
     ControllerSample::Confirm == MenuInput::Select && ControllerSample::Back == MenuInput::Back &&
     ControllerSample::Fighter == MenuInput::Fighter && ControllerSample::Options == MenuInput::Options &&
-    ControllerSample::Chat == MenuInput::Chat, "ControllerSample and MenuInput must number their buttons alike");
+    ControllerSample::Chat == MenuInput::Chat && ControllerSample::Favourite == MenuInput::Favourite,
+    "ControllerSample and MenuInput must number their buttons alike");
 static_assert((ControllerSample::Menu & (MenuInput::Up | MenuInput::Down | MenuInput::Left | MenuInput::Right |
-    MenuInput::Select | MenuInput::Back | MenuInput::Fighter | MenuInput::Options | MenuInput::Chat)) == 0,
+    MenuInput::Select | MenuInput::Back | MenuInput::Fighter | MenuInput::Options | MenuInput::Chat |
+    MenuInput::Favourite)) == 0,
     "Start must not collide with a menu button");
 
 // Directions use native fight-map bits, not the battle command buffer. Select
 // and Back are the device's physical menu buttons (Pad::MenuButtons): the
 // player's binding, else the ones the game's own menus use. On an Xbox pad X,
-// Y and View are shortcuts unless one of them confirms or goes back; Start
-// (the game's Start function on DirectInput) opens Ember.
+// Y, View and RB are shortcuts unless one of them confirms or goes back; Start
+// (the game's Start function on DirectInput) opens Ember. A DirectInput stick
+// keeps no shortcut, so its RB is only the game's HP.
 inline std::uint32_t ControllerButtons(std::uint32_t held,int deviceType=-1,std::uint32_t physical=0,const input::MenuButtons& menu={}) {
     std::uint32_t result = 0;
     if (held & 0x1) result |= ControllerSample::Up;
@@ -47,6 +50,7 @@ inline std::uint32_t ControllerButtons(std::uint32_t held,int deviceType=-1,std:
         if(shortcuts&input::xinput::X)result|=ControllerSample::Fighter;
         if(shortcuts&input::xinput::Y)result|=ControllerSample::Options;
         if(shortcuts&input::xinput::View)result|=ControllerSample::Chat;
+        if(shortcuts&input::xinput::RB)result|=ControllerSample::Favourite;
     }else if (held & 0x1000) result |= ControllerSample::Menu;
     return result;
 }

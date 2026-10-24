@@ -3171,6 +3171,9 @@ msgstr "Tavolo {0}: Ritardo, test di connessione, regole, coda e spettatori di q
 msgid "room.legend_fighter"
 msgstr "Lottatore"
 
+msgid "room.legend_favourites"
+msgstr "Preferiti"
+
 msgid "room.legend_options"
 msgstr "Opzioni"
 

@@ -3172,6 +3172,9 @@ msgstr "Mesa {0}: Retardo, prueba de conexión, reglas, cola y espectadores de e
 msgid "room.legend_fighter"
 msgstr "Luchador"
 
+msgid "room.legend_favourites"
+msgstr "Favoritos"
+
 msgid "room.legend_options"
 msgstr "Opciones"
 

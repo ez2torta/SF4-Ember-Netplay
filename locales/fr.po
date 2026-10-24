@@ -3171,6 +3171,9 @@ msgstr "Table {0} : Délai, test de connexion, règles, file et spectateurs de c
 msgid "room.legend_fighter"
 msgstr "Combattant"
 
+msgid "room.legend_favourites"
+msgstr "Favoris"
+
 msgid "room.legend_options"
 msgstr "Options"
 

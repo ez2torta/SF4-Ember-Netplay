@@ -3171,6 +3171,9 @@ msgstr "Tafel {0}: Vertraging, verbindingstest, tafelregels, wachtrij en kijken 
 msgid "room.legend_fighter"
 msgstr "Vechter"
 
+msgid "room.legend_favourites"
+msgstr "Favorieten"
+
 msgid "room.legend_options"
 msgstr "Opties"
 

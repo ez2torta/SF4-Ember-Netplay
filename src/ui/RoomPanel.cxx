@@ -741,6 +741,15 @@ void ApplicationShell::RoomShortcut(const MenuAction& a,const ShellView& v) {
  auto& nav=menu_.navigation;
  // Delete means something only on your own card (DrawRoomBoard).
  if(a.delta==MenuInput::Leave)return;
+ if(a.delta==MenuInput::Favourite){
+  // The pinned combinations, from anywhere in the room; the selector handles
+  // the shortcut itself while it is open.
+  const auto blocker=SelectionBlocker(v);
+  if(!blocker.empty()){Refuse(blocker,[](const ShellView& now){return !SelectionBlocker(now).empty();});return;}
+  selectionFresh_=true;selectionOpenOn_="favourites";
+  nav.Home();nav.Push("room");nav.Push("selection");
+  return;
+ }
  const char* target=a.delta==MenuInput::Fighter?"selection":a.delta==MenuInput::Options?"room-table":"room-chat";
  if(nav.Screen()==target){nav.Home();nav.Push("room");return;}
  if(a.delta==MenuInput::Fighter){

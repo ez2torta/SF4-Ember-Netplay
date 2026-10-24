@@ -163,7 +163,11 @@ void RoomJourneys() {
  // The selector names the board as its way back and shows the room's shortcuts.
  Check(EmbeddedReturnContext().exitName=="Room"&&EmbeddedReturnContext().shortcutHints.size()==3,
   "The fighter selector does not know it returns to the room or which shortcuts it forwards");
- // X opens the selector on the roster, to change the fighter; leaving it on
+ // The pad's legend also offers RB for the favourites page; the keyboard has
+ // no key of its own for it, so its legend stays as it was.
+ NoteMenuDevice(0);NoteMenuDevice(MenuInput::Fighter);h.Frame();
+ Check(EmbeddedReturnContext().shortcutHints.size()==4,"The pad's legend does not offer the favourites shortcut");
+ ImGui::GetIO().AddKeyEvent(ImGuiKey_UpArrow,true);NoteMenuDevice(0);ImGui::GetIO().AddKeyEvent(ImGuiKey_UpArrow,false); // X opens the selector on the roster, to change the fighter; leaving it on
  // another sub-page and coming back by X opens the roster again.
  Check(selector.Navigation().Screen()=="roster","X did not open the selector on the roster");
  selector.Navigation().Home();selector.Navigation().Push("appearance");selector.Navigation().Push("costumes");h.Frame();

@@ -3172,6 +3172,9 @@ msgstr "对战席 {0}：此对战席的延迟、连接检测、规则、队列�
 msgid "room.legend_fighter"
 msgstr "角色"
 
+msgid "room.legend_favourites"
+msgstr "收藏"
+
 msgid "room.legend_options"
 msgstr "选项"
 

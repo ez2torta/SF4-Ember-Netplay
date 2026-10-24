@@ -3171,6 +3171,9 @@ msgstr "Stůl {0}: Zpoždění, test připojení, pravidla stolu, fronta a sledo
 msgid "room.legend_fighter"
 msgstr "Bojovník"
 
+msgid "room.legend_favourites"
+msgstr "Oblíbené"
+
 msgid "room.legend_options"
 msgstr "Možnosti"
 

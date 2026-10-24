@@ -10,13 +10,13 @@
 namespace sf4e { namespace ui {
 // Copied input and semantic actions: no renderer, platform, or game dependency.
 struct MenuInput {
-    // Fighter, Options and Chat are the Xbox X, Y and View shortcuts and the
-    // F, T and C keys. The overlay passes a ControllerSample's buttons
-    // straight in, so both enums number them alike (asserted in
-    // ControllerNavigation.hxx); 64 is left for the sample's Menu button.
-    // Leave is the Delete key: it leaves your seat from your own table card,
-    // which a pad does with B.
-    enum Button : unsigned { Up=1, Down=2, Left=4, Right=8, Select=16, Back=32, Fighter=128, Options=256, Chat=512, Leave=1024 };
+    // Fighter, Options, Chat and Favourite are the Xbox X, Y, View and RB
+    // shortcuts and the F, T, C keys (RB has no key of its own). The overlay
+    // passes a ControllerSample's buttons straight in, so both enums number
+    // them alike (asserted in ControllerNavigation.hxx); 64 is left for the
+    // sample's Menu button. Leave is the Delete key: it leaves your seat from
+    // your own table card, which a pad does with B.
+    enum Button : unsigned { Up=1, Down=2, Left=4, Right=8, Select=16, Back=32, Fighter=128, Options=256, Chat=512, Leave=1024, Favourite=2048 };
     unsigned held = 0;
     double time = 0;
     bool acceptText = false;
@@ -281,7 +281,7 @@ public:
             }
             return deferText ? MenuAction{MenuAction::SubmitText} : AcceptText(entries);
         }
-        const unsigned shortcut=pressed&(MenuInput::Fighter|MenuInput::Options|MenuInput::Chat|MenuInput::Leave);
+        const unsigned shortcut=pressed&(MenuInput::Fighter|MenuInput::Options|MenuInput::Chat|MenuInput::Leave|MenuInput::Favourite);
         if(shortcut&&mode_==Modal::None) return {MenuAction::Shortcut,{},{},static_cast<int>(shortcut&(~shortcut+1))};
         if(Choosing()) {
             if((pressed&(MenuInput::Left|MenuInput::Up))&&choiceIndex_>0) --choiceIndex_;

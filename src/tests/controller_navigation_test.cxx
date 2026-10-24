@@ -78,11 +78,13 @@ void NativeReader() {
  using namespace sf4e::input;
  Check(ControllerButtons(0,PadXInput,xinput::A)==MenuInput::Select&&ControllerButtons(0,PadXInput,xinput::B)==MenuInput::Back&&
   ControllerButtons(0,PadXInput,xinput::X)==MenuInput::Fighter&&ControllerButtons(0,PadXInput,xinput::Y)==MenuInput::Options&&
-  ControllerButtons(0,PadXInput,xinput::View)==MenuInput::Chat,"An Xbox button reached the menu as another action");
- Check(ControllerButtons(0,PadXInput,xinput::Start)==Button::Menu&&(Button::Menu&(MenuInput::Fighter|MenuInput::Options|MenuInput::Chat))==0,"Start became a menu shortcut");
+  ControllerButtons(0,PadXInput,xinput::View)==MenuInput::Chat&&ControllerButtons(0,PadXInput,xinput::RB)==MenuInput::Favourite,"An Xbox button reached the menu as another action");
+ Check(ControllerButtons(0,PadXInput,xinput::Start)==Button::Menu&&(Button::Menu&(MenuInput::Fighter|MenuInput::Options|MenuInput::Chat|MenuInput::Favourite))==0,"Start became a menu shortcut");
  // A stick confirms on its third button and goes back on its second, as the game's menus do.
  Check(ControllerButtons(0x40,PadDirectInput,1u<<18)==MenuInput::Select&&ControllerButtons(0x80,PadDirectInput,1u<<17)==MenuInput::Back,"A stick lost the game's menu buttons");
  Check(ControllerButtons(0x10,PadDirectInput,1u<<19)==0,"A stick's LP still selected");
+ // A stick keeps no shortcut, so its RB stays the game's HP.
+ Check(ControllerButtons(0,PadDirectInput,xinput::RB)==0,"A stick's RB became a menu shortcut");
  // Bound to X and Y, those confirm and go back; X and Y are then no shortcuts, and A and B do nothing.
  MenuButtons moved; moved.confirm=xinput::X; moved.back=xinput::Y;
  Check(ControllerButtons(0,PadXInput,xinput::X,moved)==MenuInput::Select&&ControllerButtons(0,PadXInput,xinput::Y,moved)==MenuInput::Back,"A bound button did not select or go back");

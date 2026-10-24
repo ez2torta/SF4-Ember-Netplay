@@ -3171,6 +3171,9 @@ msgstr "Stół {0}: Opóźnienie, test połączenia, zasady, kolejka i oglądani
 msgid "room.legend_fighter"
 msgstr "Postać"
 
+msgid "room.legend_favourites"
+msgstr "Ulubione"
+
 msgid "room.legend_options"
 msgstr "Opcje"
 
