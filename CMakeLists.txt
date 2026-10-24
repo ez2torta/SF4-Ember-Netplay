@@ -169,11 +169,16 @@ if(BUILD_TESTING)
     sf4e_add_unit_test(NAME DiscordPresence SOURCES src/tests/discord_presence_test.cxx LIBS sf4e_room_model)
     include(ExternalProject)
     string(REGEX REPLACE "/VC/.*$" "" discord_vs_instance "${CMAKE_CXX_COMPILER}")
+    if(discord_vs_instance MATCHES "/2022/")
+        set(discord_vs_generator "Visual Studio 17 2022")
+    else()
+        set(discord_vs_generator "Visual Studio 18 2026")
+    endif()
     ExternalProject_Add(DiscordBridgeFixture
         BUILD_ALWAYS TRUE
         SOURCE_DIR "${CMAKE_SOURCE_DIR}/src/tests/discord-fixture"
         BINARY_DIR "${CMAKE_BINARY_DIR}/discord-bridge-fixture"
-        CMAKE_GENERATOR "Visual Studio 18 2026"
+        CMAKE_GENERATOR "${discord_vs_generator}"
         CMAKE_GENERATOR_PLATFORM x64
         CMAKE_GENERATOR_INSTANCE "${discord_vs_instance}"
         BUILD_COMMAND "${CMAKE_COMMAND}" --build <BINARY_DIR> --config Release

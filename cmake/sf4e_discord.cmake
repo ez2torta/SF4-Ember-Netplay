@@ -25,11 +25,16 @@ if(SF4E_BUILD_DISCORD)
     find_path(SF4E_JSON_INCLUDE nlohmann/json.hpp REQUIRED)
     include(ExternalProject)
     string(REGEX REPLACE "/VC/.*$" "" discord_vs_instance "${CMAKE_CXX_COMPILER}")
+    if(discord_vs_instance MATCHES "/2022/")
+        set(discord_vs_generator "Visual Studio 17 2022")
+    else()
+        set(discord_vs_generator "Visual Studio 18 2026")
+    endif()
     ExternalProject_Add(EmberDiscord
         BUILD_ALWAYS TRUE
         SOURCE_DIR "${CMAKE_SOURCE_DIR}/src/discord"
         BINARY_DIR "${CMAKE_BINARY_DIR}/discord-x64"
-        CMAKE_GENERATOR "Visual Studio 18 2026"
+        CMAKE_GENERATOR "${discord_vs_generator}"
         CMAKE_GENERATOR_PLATFORM x64
         CMAKE_GENERATOR_INSTANCE "${discord_vs_instance}"
         CMAKE_ARGS "-DSF4E_PRODUCT_VERSION=${PROJECT_VERSION}"
