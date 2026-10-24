@@ -36,6 +36,20 @@ After the first successful dependency install, subsequent builds reuse the desig
 `-SkipTests` is available for development; packaging rejects a receipt without passing tests.
 The local suite excludes public-network and live Discord tests. Explicit helper network testing is available through `scripts/test-current-network.ps1`; it does not establish actual SF4 gameplay acceptance.
 
+### Shortcuts
+
+`dev.cmd` wraps the same build with one-word targets:
+
+```powershell
+./dev.cmd build   # compile without tests
+./dev.cmd go      # compile without tests, then launch the staged game
+./dev.cmd run     # launch the staged game
+./dev.cmd test    # run CTest over the current build; 'dev test Gamepad' narrows it
+./dev.cmd full    # compile and run the whole suite, leaving a packageable receipt
+```
+
+`-ToolsRoot` (default `E:\tools`) and `-VisualStudioPath` override the tool locations.
+
 ## Package
 
 ```powershell
