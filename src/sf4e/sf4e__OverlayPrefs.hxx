@@ -23,9 +23,8 @@ namespace OverlayPrefs {
 	// combos are built from.
 	const int ROUND_COUNT_OPTIONS = 6;
 	const int ROUND_TIME_OPTIONS = 5;
-	// How many combinations the fighter select may pin. Each entry is a whole
-	// pick, so the list has no holes and no fixed size.
-	const int FavouriteLimit = 10;
+	// The cap lives with the selection rules; the preferences only enforce it.
+	const int FavouriteLimit = selection::FavouriteLimit;
 
 	struct CharaPick {
 		uint8_t charaID = 0;

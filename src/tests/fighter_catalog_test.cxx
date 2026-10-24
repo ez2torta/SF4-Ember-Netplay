@@ -193,6 +193,47 @@ int main() {
     pick.edition = 16; CHECK(Normalize(pick, true)); CHECK(pick.ultra == 0);
     CHECK(Normalize(pick, false)); CHECK(pick.edition == 14);
 
+    // Favourites: a whole combination, fitted to the room and to this PC. A
+    // favourite of another fighter keeps its costume and Ultra, which the
+    // per-fighter memory would otherwise overwrite; an edition the room does
+    // not play falls back to USF4; an unavailable entry changes nothing.
+    Availability everything; everything.ready = true; everything.costumes = UINT32_MAX;
+    everything.colors.fill(UINT32_MAX); everything.personalActions = 0x3ff;
+    Pick favourite; favourite.fighter = 0; favourite.costume = 2; favourite.color = 3;
+    favourite.ultra = 1; favourite.edition = 16; favourite.personalAction = 4;
+    Pick live; live.fighter = 1; live.costume = 0; live.color = 0;
+    CHECK(ApplyFavourite(favourite, live, true, everything) && live == favourite);
+    Pick roomRuleOff;
+    CHECK(ApplyFavourite(favourite, roomRuleOff, false, everything) && roomRuleOff.edition == UltraEdition);
+    CHECK(roomRuleOff.costume == 2 && roomRuleOff.ultra == 1 && roomRuleOff.personalAction == 4);
+    CHECK(FavouriteCandidate(favourite, false, everything).edition == UltraEdition);
+    Pick refused = live;
+    Availability loading;
+    CHECK(!ApplyFavourite(favourite, refused, true, loading) && refused == live);
+    Pick missingCustom = favourite; missingCustom.costume = 11;
+    // A custom costume this PC does not have falls back to the original and
+    // still applies; with the slot installed it is kept.
+    CHECK(ApplyFavourite(missingCustom, refused, true, everything) && refused.costume == 0);
+    InstalledContent installedCustom; installedCustom.costumes[0] = {11};
+    CHECK(ApplyFavourite(missingCustom, refused, true, everything, &installedCustom) && refused.costume == 11);
+    // The cap holds, an exact duplicate does not add a second card, and a
+    // different combination of the same fighter does.
+    std::vector<Pick> list;
+    CHECK(AddFavourite(list, favourite, true, everything) == FavouriteAdd::Added);
+    CHECK(list.size() == 1 && list[0] == favourite);
+    CHECK(AddFavourite(list, favourite, true, everything) == FavouriteAdd::Duplicate && list.size() == 1);
+    Pick other = favourite; other.ultra = 0;
+    CHECK(AddFavourite(list, other, true, everything) == FavouriteAdd::Added && list.size() == 2);
+    for (int n = 4; n < 4 + FavouriteLimit - 2; ++n) {
+        Pick more = favourite; more.color = n;
+        CHECK(AddFavourite(list, more, true, everything) == FavouriteAdd::Added);
+    }
+    CHECK(list.size() == FavouriteLimit);
+    Pick eleventh = favourite; eleventh.color = 20;
+    CHECK(AddFavourite(list, eleventh, true, everything) == FavouriteAdd::Full && list.size() == FavouriteLimit);
+    CHECK(AddFavourite(list, favourite, true, everything) == FavouriteAdd::Duplicate);
+    CHECK(AddFavourite(list, favourite, true, loading) == FavouriteAdd::Unavailable);
+
     // Custom costumes: slots 8-99 (indices 7-98) of every fighter, ten colors each, valid picks on the network and
     // listed only once installed.
     CHECK(IsCustomCostume(7) && IsCustomCostume(98) && !IsCustomCostume(6) && !IsCustomCostume(99));

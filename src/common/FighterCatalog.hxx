@@ -16,6 +16,9 @@ constexpr int RosterDisplayOrder[FighterCount] = {
     35, 34, 2, 7, 15, 12, 11, 10, 20, 22, 28, 27, 33, 39, 41,
     37, 6, 4, 5, 13, 14, 9, 8, 21, 19, 32, 24, 36, 42};
 constexpr int RosterGridColumns = 15;
+// How many combinations the fighter select may pin. Each entry is a whole pick,
+// so the list has no holes and no fixed size.
+constexpr int FavouriteLimit = 10;
 
 struct Fighter {
     const char* code;
@@ -47,6 +50,11 @@ struct Pick {
     int personalAction = 0;
     int winQuote = 0;
     int handicap = 0;
+    bool operator==(const Pick& other) const {
+        return fighter == other.fighter && costume == other.costume && color == other.color &&
+            ultra == other.ultra && edition == other.edition && personalAction == other.personalAction &&
+            winQuote == other.winQuote && handicap == other.handicap;
+    }
 };
 
 // Native customization stores a separate availability bit for each costume and
@@ -105,6 +113,18 @@ std::vector<int> AllowedPersonalActions(const Availability& availability);
 bool Valid(const Pick& pick, bool editionSelect);
 bool Available(const Pick& pick, bool editionSelect, const Availability& availability, const InstalledContent* installed = nullptr);
 bool Normalize(Pick& pick, bool editionSelect, const Availability* availability = nullptr, const InstalledContent* installed = nullptr);
+
+// A favourite is a whole combination, so applying one never falls back to the
+// per-fighter memory. The pick is fitted to the room's edition rule and to what
+// this PC has installed and unlocked before it is stored or applied.
+enum class FavouriteAdd { Added, Duplicate, Full, Unavailable };
+Pick FavouriteCandidate(Pick pick, bool editionSelect, const Availability& availability,
+    const InstalledContent* installed = nullptr);
+FavouriteAdd AddFavourite(std::vector<Pick>& favourites, Pick pick, bool editionSelect,
+    const Availability& availability, const InstalledContent* installed = nullptr);
+// Nothing changes when the normalized entry is not available.
+bool ApplyFavourite(const Pick& favourite, Pick& pick, bool editionSelect,
+    const Availability& availability, const InstalledContent* installed = nullptr);
 
 template<class Native> Pick FromNative(const Native& native) {
     Pick pick;

@@ -279,4 +279,27 @@ std::vector<int> AllowedPersonalActions(const Availability& availability) {
     return actions;
 }
 
+Pick FavouriteCandidate(Pick pick, bool editionSelect, const Availability& availability, const InstalledContent* installed) {
+    Normalize(pick, editionSelect, &availability, installed);
+    return pick;
+}
+FavouriteAdd AddFavourite(std::vector<Pick>& favourites, Pick pick, bool editionSelect,
+    const Availability& availability, const InstalledContent* installed) {
+    pick = FavouriteCandidate(pick, editionSelect, availability, installed);
+    if (!Available(pick, editionSelect, availability, installed)) return FavouriteAdd::Unavailable;
+    // An exact duplicate is already pinned; a different combination of the same
+    // fighter is a favourite of its own.
+    if (std::find(favourites.begin(), favourites.end(), pick) != favourites.end()) return FavouriteAdd::Duplicate;
+    if (favourites.size() >= static_cast<std::size_t>(FavouriteLimit)) return FavouriteAdd::Full;
+    favourites.push_back(pick);
+    return FavouriteAdd::Added;
+}
+bool ApplyFavourite(const Pick& favourite, Pick& pick, bool editionSelect,
+    const Availability& availability, const InstalledContent* installed) {
+    const Pick candidate = FavouriteCandidate(favourite, editionSelect, availability, installed);
+    if (!Available(candidate, editionSelect, availability, installed)) return false;
+    pick = candidate;
+    return true;
+}
+
 } }
