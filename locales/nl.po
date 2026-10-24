@@ -267,7 +267,6 @@ msgstr "Update beschikbaar: {0}"
 msgid "services.go_back_available"
 msgstr "Je kunt teruggaan naar {0}"
 
-
 msgid "services.up_to_date"
 msgstr "Je bent up-to-date."
 
@@ -1121,8 +1120,6 @@ msgstr "Randloos"
 
 msgid "player.borderless_detail"
 msgstr "Het spel vult het scherm in een venster zonder rand, getekend op de eigen resolutie van het scherm in 16:9, met zwarte balken op een breder of hoger scherm. Zolang dit aan staat, doen Alt+Enter en de eigen resolutie- en volledig-schermopties van het spel niets; het spel bewaart je keuze daar voor wanneer dit uit staat. Het geldt alleen voor deze pc. Wijzigingen gelden vanaf de volgende keer dat het spel start."
-
-
 
 msgid "settings.interface_title"
 msgstr "INTERFACE"
@@ -2345,6 +2342,60 @@ msgstr "Kiezen opent / Terug gaat één niveau terug."
 msgid "selection.status_adjust"
 msgstr "Links/rechts slaat op / Terug gaat één niveau terug."
 
+msgid "selection.favourites"
+msgstr "Favorieten ({0})"
+
+msgid "selection.favourites.detail"
+msgstr "Je vastgezette combinaties, klaar om te kiezen."
+
+msgid "selection.favourites_title"
+msgstr "FAVORIETEN"
+
+msgid "selection.favourites_count"
+msgstr "{0} van {1}"
+
+msgid "selection.favourites_empty"
+msgstr "Nog geen favorieten"
+
+msgid "selection.favourites_empty.detail"
+msgstr "Zet een hele combinatie vast vanuit de lijst met de ster, of vanuit de voet van de kaart."
+
+msgid "selection.favourites_empty.roster"
+msgstr "Open de lijst om er een vast te zetten."
+
+msgid "selection.favourite_add"
+msgstr "Aan favorieten toevoegen"
+
+msgid "selection.favourite_added"
+msgstr "Aan favorieten toegevoegd."
+
+msgid "selection.favourite_removed"
+msgstr "Uit favorieten verwijderd."
+
+msgid "selection.favourite_duplicate"
+msgstr "Staat al bij de favorieten."
+
+msgid "selection.favourite_full"
+msgstr "De favorieten zijn vol ({0}). Verwijder er eerst een."
+
+msgid "selection.favourite_detail"
+msgstr "{0}, {1}, kleur {2}, {3}, persoonlijke actie {4}"
+
+msgid "selection.favourite_rule_off"
+msgstr "regel uit"
+
+msgid "selection.status_favourites"
+msgstr "Select past toe / Del of de ster verwijdert / Terug gaat een niveau terug."
+
+msgid "menu.hint.add_favourite"
+msgstr "Aan favorieten toevoegen"
+
+msgid "menu.hint.apply_favourite"
+msgstr "Favoriet toepassen"
+
+msgid "screen.favourites"
+msgstr "Favorieten"
+
 msgid "selection.status_locked"
 msgstr "Keuze vergrendeld - ga terug naar je tafel."
 
@@ -2457,7 +2508,6 @@ msgstr "Matchdeelnemer verliet de kamer. De partij eindigt."
 
 msgid "update.github_unreachable"
 msgstr "GitHub is niet bereikbaar. Controleer je internetverbinding en probeer opnieuw."
-
 
 msgid "update.no_zip_asset"
 msgstr "Nieuwste release mist een SF4 Ember Netplay-ZIP."
@@ -5107,7 +5157,6 @@ msgstr "De knopafbeeldingen die Ember toont. Automatisch past ze aan de controll
 msgid "player.prompts_auto"
 msgstr "Automatisch"
 
-
 msgid "controller.brand.stick"
 msgstr "Gevechtsknoppen"
 
@@ -5149,8 +5198,6 @@ msgstr "{0} verbonden"
 
 msgid "player.controllers_detail"
 msgstr "Je speelt met {0}. Bekijk alle verbonden controllers, test hun knoppen en stel de controllers in die Ember nog niet kent."
-
-
 
 msgid "player.game_reads"
 msgstr "Laat het spel controllers lezen"
@@ -6613,7 +6660,6 @@ msgstr "Klasse-emblemen"
 
 msgid "settings.class_emblems_detail"
 msgstr "Toont de klasse van elke speler naast zijn naam in openbare kamers. Uit verbergt ze alleen op jouw scherm. Anderen zien de jouwe nog steeds en je potjes tellen nog steeds mee."
-
 
 msgid "class.developer"
 msgstr "Dev"

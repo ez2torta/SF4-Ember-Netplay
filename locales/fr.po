@@ -267,7 +267,6 @@ msgstr "Mise à jour disponible : {0}"
 msgid "services.go_back_available"
 msgstr "Vous pouvez revenir à {0}"
 
-
 msgid "services.up_to_date"
 msgstr "Vous êtes à jour."
 
@@ -1121,8 +1120,6 @@ msgstr "Sans bordure"
 
 msgid "player.borderless_detail"
 msgstr "Le jeu remplit l'écran dans une fenêtre sans cadre, rendu à la résolution propre de l'écran en 16:9, avec des bandes noires sur un écran plus large ou plus haut. Tant que c'est activé, Alt+Entrée et les options de résolution et de plein écran du jeu ne font rien ; le jeu garde votre choix pour quand ce sera désactivé. Cela ne concerne que ce PC. Les changements s'appliquent au prochain lancement du jeu."
-
-
 
 msgid "settings.interface_title"
 msgstr "INTERFACE"
@@ -2345,6 +2342,60 @@ msgstr "Sélectionner ouvre / Retour revient en arrière."
 msgid "selection.status_adjust"
 msgstr "Gauche/droite enregistre / Retour revient en arrière."
 
+msgid "selection.favourites"
+msgstr "Favoris ({0})"
+
+msgid "selection.favourites.detail"
+msgstr "Vos combinaisons épinglées, prêtes à choisir."
+
+msgid "selection.favourites_title"
+msgstr "FAVORIS"
+
+msgid "selection.favourites_count"
+msgstr "{0} sur {1}"
+
+msgid "selection.favourites_empty"
+msgstr "Aucun favori pour l'instant"
+
+msgid "selection.favourites_empty.detail"
+msgstr "Épinglez une combinaison entière depuis la liste avec son étoile, ou depuis le pied de sa carte."
+
+msgid "selection.favourites_empty.roster"
+msgstr "Ouvrez la liste pour en épingler une."
+
+msgid "selection.favourite_add"
+msgstr "Ajouter aux favoris"
+
+msgid "selection.favourite_added"
+msgstr "Ajouté aux favoris."
+
+msgid "selection.favourite_removed"
+msgstr "Retiré des favoris."
+
+msgid "selection.favourite_duplicate"
+msgstr "Déjà dans les favoris."
+
+msgid "selection.favourite_full"
+msgstr "Les favoris sont pleins ({0}). Retirez-en un d'abord."
+
+msgid "selection.favourite_detail"
+msgstr "{0}, {1}, couleur {2}, {3}, action personnelle {4}"
+
+msgid "selection.favourite_rule_off"
+msgstr "règle désactivée"
+
+msgid "selection.status_favourites"
+msgstr "Select applique / Suppr ou l'étoile retire / Retour revient d'un niveau."
+
+msgid "menu.hint.add_favourite"
+msgstr "Ajouter aux favoris"
+
+msgid "menu.hint.apply_favourite"
+msgstr "Appliquer le favori"
+
+msgid "screen.favourites"
+msgstr "Favoris"
+
 msgid "selection.status_locked"
 msgstr "Sélection verrouillée : retournez à votre table."
 
@@ -2457,7 +2508,6 @@ msgstr "Un combattant a quitté le salon. Le combat va se terminer."
 
 msgid "update.github_unreachable"
 msgstr "Impossible de joindre GitHub. Vérifiez votre connexion Internet et réessayez."
-
 
 msgid "update.no_zip_asset"
 msgstr "La dernière version n'a pas d'archive ZIP SF4 Ember Netplay."
@@ -5107,7 +5157,6 @@ msgstr "Les images de boutons affichées par Ember. Automatique les adapte à la
 msgid "player.prompts_auto"
 msgstr "Automatique"
 
-
 msgid "controller.brand.stick"
 msgstr "Boutons de combat"
 
@@ -5149,8 +5198,6 @@ msgstr "{0} connectées"
 
 msgid "player.controllers_detail"
 msgstr "Vous jouez avec {0}. Voyez toutes les manettes connectées, testez leurs boutons et configurez celles qu'Ember ne connaît pas encore."
-
-
 
 msgid "player.game_reads"
 msgstr "Laisser le jeu lire les manettes"
@@ -6613,7 +6660,6 @@ msgstr "Emblèmes de classe"
 
 msgid "settings.class_emblems_detail"
 msgstr "Affiche la classe de chaque joueur à côté de son nom dans les salons publics. Désactivé, elles sont masquées sur votre écran seulement. Les autres voient toujours la vôtre, et vos matchs comptent toujours."
-
 
 msgid "class.developer"
 msgstr "Dev"

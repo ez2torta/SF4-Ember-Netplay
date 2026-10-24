@@ -91,6 +91,9 @@ static std::atomic<bool> watchingStream{false};
 static sf4e::ui::GoNowKey s_goNowKey;
 static int lobbyStageID = 0, lobbyMenuCharaID = 0;
 static sf4e::selection::RandomPool lobbyRandomPool;
+// The favourites list changed this frame, so the preferences have to be saved
+// even though the list lives inside s_prefs and the copies compare equal.
+static bool s_favouritesDirty = false;
 // The thread that draws the overlay (NoteMessageThread).
 static std::atomic<DWORD> s_drawThread{0};
 // SF4 can pump the window's messages on another thread than the one that
@@ -236,9 +239,33 @@ void DrawNetworkCharaConfig(rVsMode::ConfirmedCharaConditions& charaConditions, 
 	// say what is wrong on this screen too, not only on the table.
 	const std::string selectionError = sf4e::selection::Available(pick, editionSelect, snapshot.fighterAvailability[pick.fighter], installed) ? std::string() :
 		sf4e::loc::T("runtime.selection_combination_unavailable");
+	// The pinned combinations live with the preferences; the selector only
+	// reads and writes them, and says when the list changed so it is saved.
+	// The preferences keep the native-shaped CharaPick, so this frame works on
+	// a converted copy and writes it back when the list changed.
+	std::vector<sf4e::selection::Pick> favouritePicks;
+	favouritePicks.reserve(s_prefs.favourites.size());
+	for (const auto& stored : s_prefs.favourites) favouritePicks.push_back(sf4e::selection::FromNative(stored));
+	sf4e::ui::FavouritesAccess favourites;
+	favourites.picks = &favouritePicks;
+	favourites.remembered = [](int fighter) { return sf4e::selection::FromNative(s_prefs.fighters[fighter]); };
+	favourites.remember = [](const sf4e::selection::Pick& applied) {
+		sf4e::selection::ToNative(applied, s_prefs.fighters[applied.fighter]);
+	};
 	s_fighterSelectors[0].Draw(pick, editionSelect, s_selectionArt.get(), [&](int fighter) { return snapshot.fighterAvailability[fighter]; }, stageId ? &stagedStage : nullptr, snapshot.canEditSelection, selectionError,
-		stageId ? &stagedPool : nullptr, installed);
-	if (snapshot.canEditSelection && pick.fighter != menuCharaID && pick.fighter >= 0 && pick.fighter < sf4e::selection::FighterCount) {
+		stageId ? &stagedPool : nullptr, installed, &favourites);
+	if (favourites.listChanged) {
+		s_prefs.favourites.clear();
+		for (const auto& pinned : favouritePicks) {
+			sf4e::OverlayPrefs::CharaPick stored;
+			sf4e::selection::ToNative(pinned, stored);
+			s_prefs.favourites.push_back(stored);
+		}
+		s_favouritesDirty = true;
+	}
+	// An applied favourite is the whole pick, so the per-fighter memory must not
+	// overwrite it; a fighter changed by hand still restores its own memory.
+	if (snapshot.canEditSelection && !favourites.applied && pick.fighter != menuCharaID && pick.fighter >= 0 && pick.fighter < sf4e::selection::FighterCount) {
 		// Customization is per fighter: the selector carried the previous
 		// fighter's values over, so restore what this one last used, fitted to
 		// what is unlocked and to the room's edition rule.
@@ -382,6 +409,7 @@ static void DrawApplicationHome(const sf4e::NetplayFacade::RuntimeSnapshot& snap
     if (replayWants.listing) sf4e::platform::replays::WantListing();
     if (replayWants.detail) sf4e::platform::replays::WantDetail(replayWants.detailFile, replayWants.detailRevision);
     view.replays = snapshot.replays;
+    view.favouritesCount = static_cast<int>(s_prefs.favourites.size());
     const auto* fighter = sf4e::selection::FindFighter(lobbyMenuCharaID);
     view.selectedFighter=lobbyMenuCharaID;
     auto summaryPick = sf4e::selection::FromNative(lobbyConditions); summaryPick.fighter = lobbyMenuCharaID;
@@ -800,7 +828,7 @@ void Overlay::DrawOverlay(const std::function<void()>& picture) {
     prefs.randomPool = lobbyRandomPool;
     // Every edit is remembered for the fighter it was made on.
     if (prefs.lobby.charaID < prefs.fighters.size()) prefs.fighters[prefs.lobby.charaID] = prefs.lobby;
-    if (prefs != s_prefs && sf4e::OverlayPrefs::Save(prefs)) s_prefs = prefs;
+    if ((prefs != s_prefs || s_favouritesDirty) && sf4e::OverlayPrefs::Save(prefs)) { s_prefs = prefs; s_favouritesDirty = false; }
     // An export takes its picture between the layers its video holds and
     // the rest of Ember, so the menu and the HUD are never in it.
     ImGui::Render();

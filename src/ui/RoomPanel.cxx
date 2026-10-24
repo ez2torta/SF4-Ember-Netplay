@@ -104,6 +104,9 @@ void SelectionRows(std::vector<MenuEntry>& rows,const ShellView& v) {
  rows.push_back(Value("fighter-options",loc::T("room.fighter_options"),v.fighterOptionsName,
   canChange?std::string(loc::T("selection.additional_options.detail")):SelectionBlocker(v),canChange));
  rows.back().adjustable=false;rows.back().opens=true;
+ // The pinned combinations: a quick way to the whole pick, before the fight.
+ rows.push_back(Row("favourites",loc::T("selection.favourites_title"),
+  loc::Tf("selection.favourites_count",v.favouritesCount,selection::FavouriteLimit),canChange));
 }
 }
 bool ApplicationShell::SendRoom(room::Action action, const ShellView& view, const Submit& submit) {
@@ -433,7 +436,7 @@ std::vector<MenuEntry> ApplicationShell::RoomEntries(const ShellView& v) {
   rows.push_back(Row("apply-capacity",loc::T("room.apply_capacity"),loc::T("room.apply_capacity.detail"),host&&roomCapacity_>=static_cast<int>(s.members.size())));
  }
  if(!active) {
-  for(auto& row:rows)if(row.id=="selection"||row.id=="ultra"||row.id=="appearance"||row.id=="stage"||row.id=="fighter-options"||row.id=="check-connection"||
+  for(auto& row:rows)if(row.id=="selection"||row.id=="ultra"||row.id=="appearance"||row.id=="stage"||row.id=="fighter-options"||row.id=="favourites"||row.id=="check-connection"||
    row.id=="input-delay"||row.id=="queue"||row.id=="watch") {
     // Per table: a cached explanation never shows on another table's row.
     const auto key=screen+"/"+std::to_string(selectedTable_)+"/"+row.id;
@@ -839,6 +842,12 @@ void ApplicationShell::RoomAction(const MenuAction& a,const ShellView& v,const S
   }
   if(a.id=="stage"||a.id=="fighter-options"){
    if(a.kind==MenuAction::Activate&&SelectionBlocker(v).empty()){selectionFresh_=true;selectionOpenOn_=a.id=="stage"?"stage":"options";nav.Push("selection");}
+   return;
+  }
+  if(a.id=="favourites"){
+   // The pinned combinations, straight to their page; applying one comes back
+   // here with the pick already changed.
+   if(a.kind==MenuAction::Activate&&SelectionBlocker(v).empty()){selectionFresh_=true;selectionOpenOn_="favourites";nav.Push("selection");}
    return;
   }
  if(a.id=="leave"){Send(netplay::CommandKind::LeaveRoom,v,submit);return;}

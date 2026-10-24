@@ -267,7 +267,6 @@ msgstr "Hay una actualización disponible: {0}"
 msgid "services.go_back_available"
 msgstr "Puedes volver a {0}"
 
-
 msgid "services.up_to_date"
 msgstr "Tienes la versión más reciente."
 
@@ -1121,8 +1120,6 @@ msgstr "Sin bordes"
 
 msgid "player.borderless_detail"
 msgstr "El juego llena la pantalla en una ventana sin marco, dibujado a la resolución propia de la pantalla en 16:9, con barras negras en pantallas más anchas o más altas. Mientras esté activado, Alt+Enter y las opciones de resolución y pantalla completa del propio juego no hacen nada; el juego guarda tu elección ahí para cuando esté desactivado. Solo afecta a esta PC. Los cambios se aplican la próxima vez que inicies el juego."
-
-
 
 msgid "settings.interface_title"
 msgstr "INTERFAZ"
@@ -2230,6 +2227,61 @@ msgid "selection.status_browse"
 msgstr "Seleccionar abre / Volver sube un nivel."
 msgid "selection.status_adjust"
 msgstr "Izquierda/Derecha guarda / Volver sube un nivel."
+
+msgid "selection.favourites"
+msgstr "Favoritos ({0})"
+
+msgid "selection.favourites.detail"
+msgstr "Tus combinaciones fijadas, listas para elegir."
+
+msgid "selection.favourites_title"
+msgstr "FAVORITOS"
+
+msgid "selection.favourites_count"
+msgstr "{0} de {1}"
+
+msgid "selection.favourites_empty"
+msgstr "Aún no hay favoritos"
+
+msgid "selection.favourites_empty.detail"
+msgstr "Fija una combinación entera desde el plantel con su estrella, o desde el pie de su tarjeta."
+
+msgid "selection.favourites_empty.roster"
+msgstr "Abre el plantel para fijar una."
+
+msgid "selection.favourite_add"
+msgstr "Añadir a favoritos"
+
+msgid "selection.favourite_added"
+msgstr "Añadido a favoritos."
+
+msgid "selection.favourite_removed"
+msgstr "Quitado de favoritos."
+
+msgid "selection.favourite_duplicate"
+msgstr "Ya está en favoritos."
+
+msgid "selection.favourite_full"
+msgstr "Los favoritos están llenos ({0}). Quita uno primero."
+
+msgid "selection.favourite_detail"
+msgstr "{0}, {1}, color {2}, {3}, acción personal {4}"
+
+msgid "selection.favourite_rule_off"
+msgstr "regla apagada"
+
+msgid "selection.status_favourites"
+msgstr "Select aplica / Supr o la estrella quita / Atrás vuelve un nivel."
+
+msgid "menu.hint.add_favourite"
+msgstr "Añadir a favoritos"
+
+msgid "menu.hint.apply_favourite"
+msgstr "Aplicar favorito"
+
+msgid "screen.favourites"
+msgstr "Favoritos"
+
 msgid "selection.status_locked"
 msgstr "Selección bloqueada: vuelve a tu mesa para ver el estado."
 
@@ -4627,7 +4679,6 @@ msgstr "Las imágenes de botones que muestra Ember. Automático usa las del cont
 msgid "player.prompts_auto"
 msgstr "Automático"
 
-
 msgid "controller.brand.stick"
 msgstr "Botones de combate"
 
@@ -4669,8 +4720,6 @@ msgstr "{0} conectados"
 
 msgid "player.controllers_detail"
 msgstr "Juegas con {0}. Consulta todos los controles conectados, prueba sus botones y configura los que Ember aún no conoce."
-
-
 
 msgid "player.game_reads"
 msgstr "Dejar que el juego lea los controles"
@@ -6133,7 +6182,6 @@ msgstr "Emblemas de clase"
 
 msgid "settings.class_emblems_detail"
 msgstr "Muestra la clase de cada jugador junto a su nombre en las salas públicas. Desactivado las oculta solo en tu pantalla. Los demás siguen viendo la tuya y tus partidas siguen contando."
-
 
 msgid "class.developer"
 msgstr "Dev"

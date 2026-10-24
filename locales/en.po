@@ -267,7 +267,6 @@ msgstr "An update is available: {0}"
 msgid "services.go_back_available"
 msgstr "Going back to {0} is available"
 
-
 msgid "services.up_to_date"
 msgstr "You are up to date."
 
@@ -1121,8 +1120,6 @@ msgstr "Borderless"
 
 msgid "player.borderless_detail"
 msgstr "The game fills the screen in a window without a frame, drawn at the screen's own resolution in 16:9, with black bars on a wider or taller screen. While it is on, Alt+Enter and the game's own resolution and fullscreen options do nothing; the game keeps your choice there for when it is off. It only affects this PC. Changes apply the next time the game starts."
-
-
 
 msgid "settings.interface_title"
 msgstr "INTERFACE"
@@ -2344,6 +2341,60 @@ msgstr "Select opens / Back returns one level."
 
 msgid "selection.status_adjust"
 msgstr "Left/Right saves / Back returns one level."
+
+msgid "selection.favourites"
+msgstr "Favourites ({0})"
+
+msgid "selection.favourites.detail"
+msgstr "Your pinned combinations, ready to pick."
+
+msgid "selection.favourites_title"
+msgstr "FAVOURITES"
+
+msgid "selection.favourites_count"
+msgstr "{0} of {1}"
+
+msgid "selection.favourites_empty"
+msgstr "No favourites yet"
+
+msgid "selection.favourites_empty.detail"
+msgstr "Pin a whole combination from the roster with its star, or from the footer of its card."
+
+msgid "selection.favourites_empty.roster"
+msgstr "Open the roster to pin one."
+
+msgid "selection.favourite_add"
+msgstr "Add to favourites"
+
+msgid "selection.favourite_added"
+msgstr "Added to favourites."
+
+msgid "selection.favourite_removed"
+msgstr "Removed from favourites."
+
+msgid "selection.favourite_duplicate"
+msgstr "Already in favourites."
+
+msgid "selection.favourite_full"
+msgstr "Favourites are full ({0}). Remove one first."
+
+msgid "selection.favourite_detail"
+msgstr "{0}, {1}, color {2}, {3}, personal action {4}"
+
+msgid "selection.favourite_rule_off"
+msgstr "rule off"
+
+msgid "selection.status_favourites"
+msgstr "Select applies / Delete or the star removes / Back returns one level."
+
+msgid "menu.hint.add_favourite"
+msgstr "Add to favourites"
+
+msgid "menu.hint.apply_favourite"
+msgstr "Apply favourite"
+
+msgid "screen.favourites"
+msgstr "Favourites"
 
 msgid "selection.status_locked"
 msgstr "Selection locked - return to your table for status."
@@ -4743,7 +4794,6 @@ msgstr "The button pictures Ember shows. Automatic matches the controller you pl
 msgid "player.prompts_auto"
 msgstr "Automatic"
 
-
 msgid "controller.brand.stick"
 msgstr "Fight buttons"
 
@@ -4785,8 +4835,6 @@ msgstr "{0} connected"
 
 msgid "player.controllers_detail"
 msgstr "You play with {0}. See every connected controller, test its buttons, and set up ones Ember does not know yet."
-
-
 
 msgid "player.game_reads"
 msgstr "Let the game read controllers"

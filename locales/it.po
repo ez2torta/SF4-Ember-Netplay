@@ -267,7 +267,6 @@ msgstr "Aggiornamento disponibile: {0}"
 msgid "services.go_back_available"
 msgstr "Puoi tornare a {0}"
 
-
 msgid "services.up_to_date"
 msgstr "Versione aggiornata."
 
@@ -1121,8 +1120,6 @@ msgstr "Senza bordi"
 
 msgid "player.borderless_detail"
 msgstr "Il gioco riempie lo schermo in una finestra senza cornice, disegnato alla risoluzione dello schermo in 16:9, con bande nere su schermi più larghi o più alti. Finché è attivo, Alt+Invio e le opzioni di risoluzione e schermo intero del gioco non fanno nulla; il gioco conserva la tua scelta per quando sarà disattivato. Riguarda solo questo PC. Le modifiche si applicano al prossimo avvio del gioco."
-
-
 
 msgid "settings.interface_title"
 msgstr "INTERFACCIA"
@@ -2345,6 +2342,60 @@ msgstr "Seleziona apre / Indietro torna di un livello."
 msgid "selection.status_adjust"
 msgstr "Sinistra/Destra salva / Indietro torna di un livello."
 
+msgid "selection.favourites"
+msgstr "Preferiti ({0})"
+
+msgid "selection.favourites.detail"
+msgstr "Le tue combinazioni fissate, pronte da scegliere."
+
+msgid "selection.favourites_title"
+msgstr "PREFERITI"
+
+msgid "selection.favourites_count"
+msgstr "{0} di {1}"
+
+msgid "selection.favourites_empty"
+msgstr "Nessun preferito"
+
+msgid "selection.favourites_empty.detail"
+msgstr "Fissa un'intera combinazione dal roster con la stella, o dal piè della sua scheda."
+
+msgid "selection.favourites_empty.roster"
+msgstr "Apri il roster per fissarne una."
+
+msgid "selection.favourite_add"
+msgstr "Aggiungi ai preferiti"
+
+msgid "selection.favourite_added"
+msgstr "Aggiunto ai preferiti."
+
+msgid "selection.favourite_removed"
+msgstr "Rimosso dai preferiti."
+
+msgid "selection.favourite_duplicate"
+msgstr "Già nei preferiti."
+
+msgid "selection.favourite_full"
+msgstr "I preferiti sono pieni ({0}). Rimuovine uno prima."
+
+msgid "selection.favourite_detail"
+msgstr "{0}, {1}, colore {2}, {3}, azione personale {4}"
+
+msgid "selection.favourite_rule_off"
+msgstr "regola spenta"
+
+msgid "selection.status_favourites"
+msgstr "Select applica / Canc o la stella rimuove / Indietro torna di un livello."
+
+msgid "menu.hint.add_favourite"
+msgstr "Aggiungi ai preferiti"
+
+msgid "menu.hint.apply_favourite"
+msgstr "Applica preferito"
+
+msgid "screen.favourites"
+msgstr "Preferiti"
+
 msgid "selection.status_locked"
 msgstr "Selezione bloccata: torna al tavolo per lo stato."
 
@@ -2457,7 +2508,6 @@ msgstr "Un partecipante ha lasciato la sala. La partita finirà."
 
 msgid "update.github_unreachable"
 msgstr "Impossibile raggiungere GitHub. Controlla la connessione e riprova."
-
 
 msgid "update.no_zip_asset"
 msgstr "L'ultima versione non ha un file ZIP SF4 Ember Netplay."
@@ -5107,7 +5157,6 @@ msgstr "Le immagini dei pulsanti mostrate da Ember. Automatico usa quelle del co
 msgid "player.prompts_auto"
 msgstr "Automatico"
 
-
 msgid "controller.brand.stick"
 msgstr "Pulsanti di combattimento"
 
@@ -5149,8 +5198,6 @@ msgstr "{0} connessi"
 
 msgid "player.controllers_detail"
 msgstr "Giochi con {0}. Vedi tutti i controller connessi, prova i loro pulsanti e configura quelli che Ember non conosce ancora."
-
-
 
 msgid "player.game_reads"
 msgstr "Lascia leggere i controller al gioco"
@@ -6613,7 +6660,6 @@ msgstr "Emblemi di classe"
 
 msgid "settings.class_emblems_detail"
 msgstr "Mostra la classe di ogni giocatore accanto al suo nome nelle sale pubbliche. Disattivato li nasconde solo sul tuo schermo. Gli altri vedono ancora la tua e le tue partite contano ancora."
-
 
 msgid "class.developer"
 msgstr "Dev"

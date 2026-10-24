@@ -267,7 +267,6 @@ msgstr "アップデートがあります：{0}"
 msgid "services.go_back_available"
 msgstr "{0} に戻すことができます"
 
-
 msgid "services.up_to_date"
 msgstr "最新版です。"
 
@@ -1121,8 +1120,6 @@ msgstr "ボーダーレス"
 
 msgid "player.borderless_detail"
 msgstr "ゲームが枠のないウィンドウで画面を埋め、画面本来の解像度の16:9で描画されます。横長や縦長の画面では黒帯が表示されます。オンの間は、Alt+Enterとゲーム本体の解像度・フルスクリーン設定は効きません。そこでの選択はオフにしたときのために保存されます。このPCだけに影響します。変更は次回ゲーム起動時に反映されます。"
-
-
 
 msgid "settings.interface_title"
 msgstr "表示"
@@ -2345,6 +2342,60 @@ msgstr "Selectで開く / 戻ると1つ前へ。"
 msgid "selection.status_adjust"
 msgstr "左右で保存 / 戻ると1つ前へ。"
 
+msgid "selection.favourites"
+msgstr "お気に入り ({0})"
+
+msgid "selection.favourites.detail"
+msgstr "固定した組み合わせ。すぐに選べます。"
+
+msgid "selection.favourites_title"
+msgstr "お気に入り"
+
+msgid "selection.favourites_count"
+msgstr "{0} / {1}"
+
+msgid "selection.favourites_empty"
+msgstr "お気に入りはまだありません"
+
+msgid "selection.favourites_empty.detail"
+msgstr "名簿の星か、カードの下部から組み合わせごと固定します。"
+
+msgid "selection.favourites_empty.roster"
+msgstr "名簿を開いて固定します。"
+
+msgid "selection.favourite_add"
+msgstr "お気に入りに追加"
+
+msgid "selection.favourite_added"
+msgstr "お気に入りに追加しました。"
+
+msgid "selection.favourite_removed"
+msgstr "お気に入りから削除しました。"
+
+msgid "selection.favourite_duplicate"
+msgstr "すでにお気に入りです。"
+
+msgid "selection.favourite_full"
+msgstr "お気に入りがいっぱいです ({0})。先に一つ削除してください。"
+
+msgid "selection.favourite_detail"
+msgstr "{0}、{1}、カラー{2}、{3}、パーソナルアクション{4}"
+
+msgid "selection.favourite_rule_off"
+msgstr "ルール無効"
+
+msgid "selection.status_favourites"
+msgstr "Select で適用 / Delete か星で削除 / 戻るで一つ前へ。"
+
+msgid "menu.hint.add_favourite"
+msgstr "お気に入りに追加"
+
+msgid "menu.hint.apply_favourite"
+msgstr "お気に入りを適用"
+
+msgid "screen.favourites"
+msgstr "お気に入り"
+
 msgid "selection.status_locked"
 msgstr "選択はロック中。状態を確認するには対戦席へ戻ってください。"
 
@@ -2457,7 +2508,6 @@ msgstr "対戦参加者がルームから退出しました。ゲームを終了
 
 msgid "update.github_unreachable"
 msgstr "GitHubに接続できませんでした。インターネット接続を確認して再試行してください。"
-
 
 msgid "update.no_zip_asset"
 msgstr "最新リリースにSF4 Ember NetplayのZIPファイルがありません。"
@@ -5108,7 +5158,6 @@ msgstr "Emberに表示するボタンの画像です。自動は、プレイに�
 msgid "player.prompts_auto"
 msgstr "自動"
 
-
 msgid "controller.brand.stick"
 msgstr "対戦用ボタン"
 
@@ -5150,8 +5199,6 @@ msgstr "接続中: {0} 台"
 
 msgid "player.controllers_detail"
 msgstr "{0} でプレイしています。接続中のコントローラーを確認し、ボタンをテストして、Emberがまだ認識していないものを設定できます。"
-
-
 
 msgid "player.game_reads"
 msgstr "ゲームにコントローラーを読ませる"
@@ -6614,7 +6661,6 @@ msgstr "クラスエンブレム"
 
 msgid "settings.class_emblems_detail"
 msgstr "公開ルームで各プレイヤーの名前の横にクラスを表示します。オフにすると自分の画面でのみ非表示になります。ほかの人にはあなたのクラスが表示され、対戦もカウントされます。"
-
 
 msgid "class.developer"
 msgstr "開発"

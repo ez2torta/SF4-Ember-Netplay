@@ -201,6 +201,7 @@ std::vector<MenuEntry> ApplicationShell::BuildRows(const ShellView& v,const std:
   rows={Row("online",loc::T("home.online"),idle?loc::T("home.online_detail"):loc::T("home.return_room")),
    Row("selection",loc::T("home.fighter_select"),v.canEditSelection?v.selectionSummary:
     v.selectionLockReason.empty()?loc::T("home.selection_locked"):v.selectionLockReason,bool(selection)),
+   Row("favourites",loc::T("selection.favourites_title"),loc::Tf("selection.favourites_count",v.favouritesCount,selection::FavouriteLimit),bool(selection)),
    Row("profile",loc::T("home.profile"),loc::T("home.profile_detail")),
    Row("settings",loc::T("home.settings"),loc::T("home.settings_detail")),
    Row("offline",loc::T("home.offline"),loc::T("home.offline_detail"),idle),
@@ -513,6 +514,7 @@ void ApplicationShell::HandleActivate(const MenuAction& a,const ShellView& v,con
  else if(const auto choice=screen==CountryPicker::Screen?countryPicker_.Choose(a.id):std::nullopt){if(v.canEditPreferences){preferences_.country=*choice;preferencesDirty_=true;saveAt_=ImGui::GetTime()+.45;error_.clear();nav.Return();}}
  else if(a.id.compare(0,5,"main-")==0&&v.canEditPreferences){preferences_.mainFighter=std::stoi(a.id.substr(5));preferencesDirty_=true;profileSavePending_=true;error_.clear();saveAt_=ImGui::GetTime()+.45;}
  else if(a.id=="selection"){selectionFresh_=true;selectionOpenOn_=screen.compare(0,4,"room")==0?"roster":"";nav.Push(a.id);}
+ else if(a.id=="favourites"){selectionFresh_=true;selectionOpenOn_="favourites";nav.Push("selection");}
  else if(a.id=="replays"||a.id=="controllers")nav.Push(a.id);
  else if(a.id=="replay-folder")Service(platform::ServiceAction::OpenReplayFolder,v,submit);
  else if(a.id=="create"||a.id=="pr-create"||a.id=="pr-none"||a.id=="host")CreateActivate(a,v,submit);

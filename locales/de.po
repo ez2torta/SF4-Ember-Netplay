@@ -267,7 +267,6 @@ msgstr "Update verfügbar: {0}"
 msgid "services.go_back_available"
 msgstr "Sie können zu {0} zurückkehren"
 
-
 msgid "services.up_to_date"
 msgstr "Alles aktuell."
 
@@ -1121,8 +1120,6 @@ msgstr "Randlos"
 
 msgid "player.borderless_detail"
 msgstr "Das Spiel füllt den Bildschirm in einem Fenster ohne Rahmen, gerendert in der eigenen Auflösung des Bildschirms im Format 16:9, mit schwarzen Balken auf breiteren oder höheren Bildschirmen. Solange es an ist, bewirken Alt+Enter und die spieleigenen Optionen für Auflösung und Vollbild nichts; das Spiel behält deine Wahl dort für die Zeit, in der es aus ist. Betrifft nur diesen PC. Änderungen gelten ab dem nächsten Spielstart."
-
-
 
 msgid "settings.interface_title"
 msgstr "OBERFLÄCHE"
@@ -2345,6 +2342,60 @@ msgstr "Auswählen öffnet / Zurück geht zurück."
 msgid "selection.status_adjust"
 msgstr "Links/Rechts speichert / Zurück geht zurück."
 
+msgid "selection.favourites"
+msgstr "Favoriten ({0})"
+
+msgid "selection.favourites.detail"
+msgstr "Deine angehefteten Kombinationen, bereit zur Auswahl."
+
+msgid "selection.favourites_title"
+msgstr "FAVORITEN"
+
+msgid "selection.favourites_count"
+msgstr "{0} von {1}"
+
+msgid "selection.favourites_empty"
+msgstr "Noch keine Favoriten"
+
+msgid "selection.favourites_empty.detail"
+msgstr "Heft eine ganze Kombination in der Liste über ihren Stern an, oder über die Fußzeile ihrer Karte."
+
+msgid "selection.favourites_empty.roster"
+msgstr "Öffne die Liste, um eine anzuheften."
+
+msgid "selection.favourite_add"
+msgstr "Zu Favoriten hinzufügen"
+
+msgid "selection.favourite_added"
+msgstr "Zu Favoriten hinzugefügt."
+
+msgid "selection.favourite_removed"
+msgstr "Aus Favoriten entfernt."
+
+msgid "selection.favourite_duplicate"
+msgstr "Schon in den Favoriten."
+
+msgid "selection.favourite_full"
+msgstr "Die Favoriten sind voll ({0}). Entferne zuerst einen."
+
+msgid "selection.favourite_detail"
+msgstr "{0}, {1}, Farbe {2}, {3}, persönliche Aktion {4}"
+
+msgid "selection.favourite_rule_off"
+msgstr "Regel aus"
+
+msgid "selection.status_favourites"
+msgstr "Select wendet an / Entf oder der Stern entfernt / Zurück geht eine Ebene zurück."
+
+msgid "menu.hint.add_favourite"
+msgstr "Zu Favoriten hinzufügen"
+
+msgid "menu.hint.apply_favourite"
+msgstr "Favorit anwenden"
+
+msgid "screen.favourites"
+msgstr "Favoriten"
+
 msgid "selection.status_locked"
 msgstr "Auswahl gesperrt: Status am Tisch prüfen."
 
@@ -2457,7 +2508,6 @@ msgstr "Ein Kampfteilnehmer hat den Raum verlassen. Das Spiel endet."
 
 msgid "update.github_unreachable"
 msgstr "GitHub nicht erreichbar. Prüfen Sie Ihre Internetverbindung und versuchen Sie es erneut."
-
 
 msgid "update.no_zip_asset"
 msgstr "Neuestes Release enthält kein SF4 Ember Netplay-ZIP."
@@ -5107,7 +5157,6 @@ msgstr "Die Tastenbilder, die Ember zeigt. Automatisch passt sie an den Controll
 msgid "player.prompts_auto"
 msgstr "Automatisch"
 
-
 msgid "controller.brand.stick"
 msgstr "Kampftasten"
 
@@ -5149,8 +5198,6 @@ msgstr "{0} verbunden"
 
 msgid "player.controllers_detail"
 msgstr "Du spielst mit {0}. Sieh alle verbundenen Controller, teste ihre Tasten und richte die ein, die Ember noch nicht kennt."
-
-
 
 msgid "player.game_reads"
 msgstr "Controller vom Spiel lesen lassen"
@@ -6613,7 +6660,6 @@ msgstr "Klassen-Embleme"
 
 msgid "settings.class_emblems_detail"
 msgstr "Zeigt die Klasse jedes Spielers neben seinem Namen in öffentlichen Räumen. Aus blendet sie nur auf Ihrem Bildschirm aus. Andere sehen Ihre weiterhin, und Ihre Spiele zählen weiter."
-
 
 msgid "class.developer"
 msgstr "Dev"

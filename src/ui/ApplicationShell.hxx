@@ -119,6 +119,8 @@ struct ShellView {
     input::MenuButtons menuButtons;
             bool canChangeController = false, controllerReady = false;
     std::string selectionSummary, selectionError;
+    // The pinned combinations, for Home's and the table's Favourites rows.
+    int favouritesCount = 0;
     // The chosen fighter, Ultra, appearance, fighter options and stage, for
     // the table page's rows; ultraSteps and colorSteps when there is more than
     // one to step through.

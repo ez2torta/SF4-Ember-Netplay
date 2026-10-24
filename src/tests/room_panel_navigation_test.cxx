@@ -312,7 +312,7 @@ int main() try {
     };
     const int rules = at("edition") >= 0 ? at("edition") : at("rules");
     Check(rows[1].id == "selection" && rows[2].id == "ultra" && rows[3].id == "appearance" &&
-        rows[4].id == "fighter-options" && rows[5].id == "stage" && rules == 6 &&
+        rows[4].id == "fighter-options" && rows[5].id == "favourites" && rows[6].id == "stage" && rules == 7 &&
         at("input-delay") > rules && at("check-connection") == at("input-delay") + 1 && at("unqueue") > at("check-connection"),
         "The table page is not ordered pick, match, connection, leave");
     // Personal action, win quote and the other options are reachable from a seat
@@ -368,11 +368,11 @@ int main() try {
             becomes(status);
             shell.Navigation().Home(); shell.Navigation().Push("room-table"); frame();
             Check(rows[0].id == "selection" && rows[1].id == "ultra" && rows[2].id == "appearance" &&
-                rows[3].id == "fighter-options" && rows[4].id == (queued ? "unqueue" : "queue"),
+                rows[3].id == "fighter-options" && rows[4].id == "favourites" && rows[5].id == (queued ? "unqueue" : "queue"),
                 "Unseated pick rows are missing or not above Queue/Watch");
             focus("selection");
-            walk(MenuInput::Down, {"ultra", "appearance", "fighter-options", rows[4].id});
-            walk(MenuInput::Up, {"fighter-options", "appearance", "ultra", "selection"});
+            walk(MenuInput::Down, {"ultra", "appearance", "fighter-options", "favourites", rows[5].id});
+            walk(MenuInput::Up, {"favourites", "fighter-options", "appearance", "ultra", "selection"});
             Check(at("stage") == -1, "An unseated member was offered Stage");
             Check(row("selection").value == view.fighterName && row("ultra").value == view.ultraName &&
                 row("appearance").value == view.appearanceName && row("fighter-options").value == view.fighterOptionsName,

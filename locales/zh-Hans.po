@@ -267,7 +267,6 @@ msgstr "有可用更新：{0}"
 msgid "services.go_back_available"
 msgstr "可以回退到 {0}"
 
-
 msgid "services.up_to_date"
 msgstr "已是最新版本。"
 
@@ -1121,8 +1120,6 @@ msgstr "无边框"
 
 msgid "player.borderless_detail"
 msgstr "游戏以无边框窗口填满屏幕，按屏幕原生分辨率以 16:9 绘制，在更宽或更高的屏幕上显示黑边。开启时，Alt+Enter 以及游戏自带的分辨率和全屏选项都不起作用；你在那里的选择会保留到关闭时使用。只影响这台电脑。更改将在下次启动游戏时生效。"
-
-
 
 msgid "settings.interface_title"
 msgstr "界面"
@@ -2345,6 +2342,60 @@ msgstr "选择打开／返回上一级。"
 msgid "selection.status_adjust"
 msgstr "左／右保存，返回上一级。"
 
+msgid "selection.favourites"
+msgstr "收藏 ({0})"
+
+msgid "selection.favourites.detail"
+msgstr "已存的组合，随时可选。"
+
+msgid "selection.favourites_title"
+msgstr "收藏"
+
+msgid "selection.favourites_count"
+msgstr "{0} / {1}"
+
+msgid "selection.favourites_empty"
+msgstr "还没有收藏"
+
+msgid "selection.favourites_empty.detail"
+msgstr "在名单里用收藏按键存下整个组合，或在卡片底部收藏。"
+
+msgid "selection.favourites_empty.roster"
+msgstr "打开名单来收藏一个。"
+
+msgid "selection.favourite_add"
+msgstr "加入收藏"
+
+msgid "selection.favourite_added"
+msgstr "已加入收藏。"
+
+msgid "selection.favourite_removed"
+msgstr "已从收藏中移除。"
+
+msgid "selection.favourite_duplicate"
+msgstr "已在收藏中。"
+
+msgid "selection.favourite_full"
+msgstr "收藏已满（{0}）。请先移除一个。"
+
+msgid "selection.favourite_detail"
+msgstr "{0}，{1}，颜色 {2}，{3}，个人动作 {4}"
+
+msgid "selection.favourite_rule_off"
+msgstr "规则关闭"
+
+msgid "selection.status_favourites"
+msgstr "Select 应用 / Delete 或收藏移除 / 返回上一级。"
+
+msgid "menu.hint.add_favourite"
+msgstr "加入收藏"
+
+msgid "menu.hint.apply_favourite"
+msgstr "应用收藏"
+
+msgid "screen.favourites"
+msgstr "收藏"
+
 msgid "selection.status_locked"
 msgstr "选择已锁定－返回对战席查看状态。"
 
@@ -2457,7 +2508,6 @@ msgstr "一名参赛玩家离开房间，对战即将结束。"
 
 msgid "update.github_unreachable"
 msgstr "无法连接 GitHub。请检查网络后重试。"
-
 
 msgid "update.no_zip_asset"
 msgstr "最新发行版没有 SF4 Ember Netplay ZIP 文件。"
@@ -5108,7 +5158,6 @@ msgstr "Ember 显示的按钮图案。自动会匹配你游玩时使用的控制
 msgid "player.prompts_auto"
 msgstr "自动"
 
-
 msgid "controller.brand.stick"
 msgstr "战斗按钮"
 
@@ -5150,8 +5199,6 @@ msgstr "已连接 {0} 个"
 
 msgid "player.controllers_detail"
 msgstr "你正在使用 {0} 游玩。查看所有已连接的控制器，测试按钮，并设置 Ember 尚未识别的控制器。"
-
-
 
 msgid "player.game_reads"
 msgstr "让游戏读取控制器"
@@ -6614,7 +6661,6 @@ msgstr "等级徽章"
 
 msgid "settings.class_emblems_detail"
 msgstr "在公开房间中，于每位玩家名字旁显示其等级。关闭后仅在你的屏幕上隐藏。其他人仍能看到你的等级，你的对战也仍会计入。"
-
 
 msgid "class.developer"
 msgstr "开发"

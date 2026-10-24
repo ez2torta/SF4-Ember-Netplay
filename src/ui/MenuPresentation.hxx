@@ -24,6 +24,7 @@ inline const char* MenuScreenName(const std::string& screen) {
         {"room-members",loc::T("screen.members")},{"room-member",loc::T("screen.member")},{"room-chat",loc::T("screen.chat")},
         {"room-admin",loc::T("screen.room_settings")},
         {"roster",loc::T("selection.fighter")},{"appearance",loc::T("selection.appearance")},
+        {"favourites",loc::T("screen.favourites")},
         {"costumes",loc::T("selection.costume_gallery")},{"colors",loc::T("selection.color_gallery")},
         {"ultra",loc::T("selection.ultra_combo")},{"stage",loc::T("selection.stage")},{"options",loc::T("selection.additional_options")},
         {"frame-data",loc::T("training.frame_data")},{"hud",loc::T("training.hud")},{"meter-settings",loc::T("training.meter.settings")},{"meter-classic",loc::T("training.meter.classic")},{"dummy",loc::T("training.dummy")},

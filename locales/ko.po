@@ -267,7 +267,6 @@ msgstr "업데이트가 있습니다: {0}"
 msgid "services.go_back_available"
 msgstr "{0} 버전으로 돌아갈 수 있습니다"
 
-
 msgid "services.up_to_date"
 msgstr "최신 버전입니다."
 
@@ -1121,8 +1120,6 @@ msgstr "테두리 없음"
 
 msgid "player.borderless_detail"
 msgstr "게임이 테두리 없는 창으로 화면을 채우고, 화면 고유 해상도의 16:9로 그려집니다. 더 넓거나 높은 화면에서는 검은 띠가 표시됩니다. 켜져 있는 동안에는 Alt+Enter와 게임 자체의 해상도 및 전체 화면 옵션이 작동하지 않으며, 거기서 고른 설정은 끌 때를 위해 보관됩니다. 이 PC에만 적용됩니다. 변경 사항은 다음에 게임을 시작할 때 적용됩니다."
-
-
 
 msgid "settings.interface_title"
 msgstr "화면"
@@ -2345,6 +2342,60 @@ msgstr "선택으로 열기 / 뒤로 한 단계 이동"
 msgid "selection.status_adjust"
 msgstr "좌/우로 저장 / 뒤로 한 단계 이동"
 
+msgid "selection.favourites"
+msgstr "즐겨찾기 ({0})"
+
+msgid "selection.favourites.detail"
+msgstr "고정한 조합입니다. 바로 고를 수 있습니다."
+
+msgid "selection.favourites_title"
+msgstr "즐겨찾기"
+
+msgid "selection.favourites_count"
+msgstr "{0} / {1}"
+
+msgid "selection.favourites_empty"
+msgstr "아직 즐겨찾기가 없습니다"
+
+msgid "selection.favourites_empty.detail"
+msgstr "명단에서 별로, 또는 카드 하단에서 조합 전체를 고정하세요."
+
+msgid "selection.favourites_empty.roster"
+msgstr "명단을 열어 하나를 고정하세요."
+
+msgid "selection.favourite_add"
+msgstr "즐겨찾기에 추가"
+
+msgid "selection.favourite_added"
+msgstr "즐겨찾기에 추가했습니다."
+
+msgid "selection.favourite_removed"
+msgstr "즐겨찾기에서 삭제했습니다."
+
+msgid "selection.favourite_duplicate"
+msgstr "이미 즐겨찾기에 있습니다."
+
+msgid "selection.favourite_full"
+msgstr "즐겨찾기가 가득 찼습니다 ({0}). 먼저 하나를 삭제하세요."
+
+msgid "selection.favourite_detail"
+msgstr "{0}, {1}, 색상 {2}, {3}, 개인 액션 {4}"
+
+msgid "selection.favourite_rule_off"
+msgstr "규칙 꺼짐"
+
+msgid "selection.status_favourites"
+msgstr "Select 적용 / Delete 또는 별 삭제 / 뒤로 한 단계."
+
+msgid "menu.hint.add_favourite"
+msgstr "즐겨찾기에 추가"
+
+msgid "menu.hint.apply_favourite"
+msgstr "즐겨찾기 적용"
+
+msgid "screen.favourites"
+msgstr "즐겨찾기"
+
 msgid "selection.status_locked"
 msgstr "선택 잠김 - 상태를 보려면 테이블로 이동"
 
@@ -2457,7 +2508,6 @@ msgstr "대전 참가자가 방을 나갔습니다. 대전이 종료됩니다."
 
 msgid "update.github_unreachable"
 msgstr "GitHub에 연결하지 못했습니다. 인터넷 연결을 확인하고 다시 시도하세요."
-
 
 msgid "update.no_zip_asset"
 msgstr "최신 릴리스에 SF4 Ember Netplay ZIP 파일이 없습니다."
@@ -5108,7 +5158,6 @@ msgstr "Ember에 표시되는 버튼 그림입니다. 자동은 플레이에 사
 msgid "player.prompts_auto"
 msgstr "자동"
 
-
 msgid "controller.brand.stick"
 msgstr "전투 버튼"
 
@@ -5150,8 +5199,6 @@ msgstr "{0}개 연결됨"
 
 msgid "player.controllers_detail"
 msgstr "{0}로 플레이합니다. 연결된 모든 컨트롤러를 확인하고 버튼을 시험하며 Ember가 아직 모르는 컨트롤러를 설정하세요."
-
-
 
 msgid "player.game_reads"
 msgstr "게임이 컨트롤러를 읽게 하기"
@@ -6614,7 +6661,6 @@ msgstr "클래스 엠블럼"
 
 msgid "settings.class_emblems_detail"
 msgstr "공개 방에서 각 플레이어의 이름 옆에 클래스를 표시합니다. 끄면 내 화면에서만 숨겨집니다. 다른 사람에게는 내 클래스가 계속 보이고 대전도 계속 반영됩니다."
-
 
 msgid "class.developer"
 msgstr "개발"

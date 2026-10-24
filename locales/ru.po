@@ -267,7 +267,6 @@ msgstr "Доступно обновление: {0}"
 msgid "services.go_back_available"
 msgstr "Можно вернуться к версии {0}"
 
-
 msgid "services.up_to_date"
 msgstr "У вас последняя версия."
 
@@ -1122,8 +1121,6 @@ msgstr "Без рамки"
 
 msgid "player.borderless_detail"
 msgstr "Игра заполняет экран в окне без рамки и рисуется в собственном разрешении экрана в формате 16:9, с чёрными полосами на более широком или высоком экране. Пока это включено, Alt+Enter и собственные настройки разрешения и полноэкранного режима в игре ничего не делают; игра сохраняет ваш выбор там на случай, когда это будет выключено. Влияет только на этот ПК. Изменения вступят в силу при следующем запуске игры."
-
-
 
 msgid "settings.interface_title"
 msgstr "ИНТЕРФЕЙС"
@@ -2346,6 +2343,60 @@ msgstr "«Выбрать» открывает / «Назад» возвраща�
 msgid "selection.status_adjust"
 msgstr "«Влево/вправо» сохраняет / «Назад» возвращает."
 
+msgid "selection.favourites"
+msgstr "Избранное ({0})"
+
+msgid "selection.favourites.detail"
+msgstr "Твои закреплённые комбинации, готовые к выбору."
+
+msgid "selection.favourites_title"
+msgstr "ИЗБРАННОЕ"
+
+msgid "selection.favourites_count"
+msgstr "{0} из {1}"
+
+msgid "selection.favourites_empty"
+msgstr "Избранного пока нет"
+
+msgid "selection.favourites_empty.detail"
+msgstr "Закрепи целую комбинацию в списке звездой или в подвале её карточки."
+
+msgid "selection.favourites_empty.roster"
+msgstr "Открой список, чтобы закрепить одну."
+
+msgid "selection.favourite_add"
+msgstr "Добавить в избранное"
+
+msgid "selection.favourite_added"
+msgstr "Добавлено в избранное."
+
+msgid "selection.favourite_removed"
+msgstr "Удалено из избранного."
+
+msgid "selection.favourite_duplicate"
+msgstr "Уже в избранном."
+
+msgid "selection.favourite_full"
+msgstr "Избранное заполнено ({0}). Сначала удали одну."
+
+msgid "selection.favourite_detail"
+msgstr "{0}, {1}, цвет {2}, {3}, личное действие {4}"
+
+msgid "selection.favourite_rule_off"
+msgstr "правило выкл."
+
+msgid "selection.status_favourites"
+msgstr "Select применяет / Delete или звезда удаляет / Назад возвращает на уровень."
+
+msgid "menu.hint.add_favourite"
+msgstr "Добавить в избранное"
+
+msgid "menu.hint.apply_favourite"
+msgstr "Применить избранное"
+
+msgid "screen.favourites"
+msgstr "Избранное"
+
 msgid "selection.status_locked"
 msgstr "Выбор заблокирован: вернитесь в свою ячейку."
 
@@ -2458,7 +2509,6 @@ msgstr "Участник матча покинул лобби. Бой завер
 
 msgid "update.github_unreachable"
 msgstr "Не удалось связаться с GitHub. Проверьте интернет и повторите попытку."
-
 
 msgid "update.no_zip_asset"
 msgstr "В последнем выпуске нет ZIP-пакета SF4 Ember Netplay."
@@ -5108,7 +5158,6 @@ msgstr "Изображения кнопок, которые показывает
 msgid "player.prompts_auto"
 msgstr "Автоматически"
 
-
 msgid "controller.brand.stick"
 msgstr "Боевые кнопки"
 
@@ -5150,8 +5199,6 @@ msgstr "Подключено: {0}"
 
 msgid "player.controllers_detail"
 msgstr "Вы играете с {0}. Посмотрите все подключённые контроллеры, проверьте их кнопки и настройте те, которые Ember ещё не знает."
-
-
 
 msgid "player.game_reads"
 msgstr "Разрешить игре читать контроллеры"
@@ -6614,7 +6661,6 @@ msgstr "Эмблемы классов"
 
 msgid "settings.class_emblems_detail"
 msgstr "Показывает класс каждого игрока рядом с его именем в открытых лобби. Если выключено, они скрыты только на вашем экране. Другие по-прежнему видят ваш класс, и ваши игры засчитываются."
-
 
 msgid "class.developer"
 msgstr "Dev"

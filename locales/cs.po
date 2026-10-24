@@ -267,7 +267,6 @@ msgstr "K dispozici je aktualizace: {0}"
 msgid "services.go_back_available"
 msgstr "Je možné se vrátit k verzi {0}"
 
-
 msgid "services.up_to_date"
 msgstr "Máte aktuální verzi."
 
@@ -1121,8 +1120,6 @@ msgstr "Bez okraje"
 
 msgid "player.borderless_detail"
 msgstr "Hra vyplní obrazovku v okně bez rámečku, vykreslená v nativním rozlišení obrazovky v poměru 16:9, s černými pruhy na širší nebo vyšší obrazovce. Když je zapnuto, Alt+Enter ani vlastní volby rozlišení a celé obrazovky ve hře nic nedělají; hra si tam vaši volbu ponechá na dobu, kdy bude vypnuto. Týká se jen tohoto PC. Změny se projeví při dalším spuštění hry."
-
-
 
 msgid "settings.interface_title"
 msgstr "ROZHRANÍ"
@@ -2345,6 +2342,60 @@ msgstr "Vybrat otevře / Zpět o úroveň výš."
 msgid "selection.status_adjust"
 msgstr "Vlevo/vpravo uloží / Zpět o úroveň výš."
 
+msgid "selection.favourites"
+msgstr "Oblíbené ({0})"
+
+msgid "selection.favourites.detail"
+msgstr "Tvé připnuté kombinace, připravené k výběru."
+
+msgid "selection.favourites_title"
+msgstr "OBLÍBENÉ"
+
+msgid "selection.favourites_count"
+msgstr "{0} z {1}"
+
+msgid "selection.favourites_empty"
+msgstr "Zatím žádné oblíbené"
+
+msgid "selection.favourites_empty.detail"
+msgstr "Připni celou kombinaci ze seznamu hvězdičkou nebo ze zápatí její karty."
+
+msgid "selection.favourites_empty.roster"
+msgstr "Otevři seznam a nějakou připni."
+
+msgid "selection.favourite_add"
+msgstr "Přidat do oblíbených"
+
+msgid "selection.favourite_added"
+msgstr "Přidáno do oblíbených."
+
+msgid "selection.favourite_removed"
+msgstr "Odebráno z oblíbených."
+
+msgid "selection.favourite_duplicate"
+msgstr "Už je v oblíbených."
+
+msgid "selection.favourite_full"
+msgstr "Oblíbené jsou plné ({0}). Nejprve jednu odeber."
+
+msgid "selection.favourite_detail"
+msgstr "{0}, {1}, barva {2}, {3}, osobní akce {4}"
+
+msgid "selection.favourite_rule_off"
+msgstr "pravidlo vypnuto"
+
+msgid "selection.status_favourites"
+msgstr "Select použije / Delete nebo hvězdička odebere / Zpět se vrátí o úroveň."
+
+msgid "menu.hint.add_favourite"
+msgstr "Přidat do oblíbených"
+
+msgid "menu.hint.apply_favourite"
+msgstr "Použít oblíbenou"
+
+msgid "screen.favourites"
+msgstr "Oblíbené"
+
 msgid "selection.status_locked"
 msgstr "Výběr uzamčen: stav najdete u svého stolu."
 
@@ -2457,7 +2508,6 @@ msgstr "Účastník zápasu opustil místnost. Hra skončí."
 
 msgid "update.github_unreachable"
 msgstr "GitHub není dostupný. Zkontrolujte internetové připojení a zkuste to znovu."
-
 
 msgid "update.no_zip_asset"
 msgstr "Nejnovější vydání nemá ZIP balíček SF4 Ember Netplay."
@@ -5107,7 +5157,6 @@ msgstr "Obrázky tlačítek, které Ember ukazuje. Automaticky odpovídá ovlada
 msgid "player.prompts_auto"
 msgstr "Automaticky"
 
-
 msgid "controller.brand.stick"
 msgstr "Bojová tlačítka"
 
@@ -5149,8 +5198,6 @@ msgstr "Připojeno: {0}"
 
 msgid "player.controllers_detail"
 msgstr "Hrajete s {0}. Prohlédněte si všechny připojené ovladače, vyzkoušejte jejich tlačítka a nastavte ty, které Ember ještě nezná."
-
-
 
 msgid "player.game_reads"
 msgstr "Nechat hru číst ovladače"
@@ -6613,7 +6660,6 @@ msgstr "Emblémy tříd"
 
 msgid "settings.class_emblems_detail"
 msgstr "Zobrazuje třídu každého hráče u jeho jména ve veřejných místnostech. Vypnutí je skryje jen na vaší obrazovce. Ostatní vaši třídu stále vidí a vaše hry se stále počítají."
-
 
 msgid "class.developer"
 msgstr "Dev"
