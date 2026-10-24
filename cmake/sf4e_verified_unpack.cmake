@@ -23,7 +23,22 @@ function(sf4e_unpack_verified archive sha256 destination)
         return()
     endif()
     file(REMOVE_RECURSE "${destination}")
-    file(ARCHIVE_EXTRACT INPUT "${archive}" DESTINATION "${destination}")
+    if(WIN32)
+        # CMake's archive extractor restores ZIP timestamps. That can fail on
+        # FAT/exFAT volumes, so stream files out without applying timestamps.
+        execute_process(
+            COMMAND powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass
+                -File "${CMAKE_CURRENT_FUNCTION_LIST_DIR}/sf4e_extract_zip.ps1"
+                -Archive "${archive}" -Destination "${destination}"
+            RESULT_VARIABLE extract_result
+            OUTPUT_VARIABLE extract_stdout
+            ERROR_VARIABLE extract_stderr)
+        if(NOT extract_result EQUAL 0)
+            message(FATAL_ERROR "Could not extract ${archive}: ${extract_stdout}${extract_stderr}")
+        endif()
+    else()
+        file(ARCHIVE_EXTRACT INPUT "${archive}" DESTINATION "${destination}")
+    endif()
     foreach(file IN LISTS ARGN)
         if(NOT EXISTS "${destination}/${file}")
             message(FATAL_ERROR "${archive} has no ${file}")
