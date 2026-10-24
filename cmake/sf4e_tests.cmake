@@ -97,6 +97,9 @@ function(sf4e_add_unit_test)
     endforeach()
     set(target "${arg_NAME}Test")
     add_executable(${target} ${arg_SOURCES})
+    # Without a manifest Windows' installer detection demands elevation for names
+    # such as GamepadSlotsImportPatchTest, and CTest then reports BAD_COMMAND.
+    sf4e_embed_manifest(${target} "Test.exe.manifest")
     if("STD" IN_LIST seen)
         target_compile_features(${target} PRIVATE cxx_std_${arg_STD})
     endif()
