@@ -31,6 +31,8 @@ Inside a managed multi-checkout workspace, a parent `build-target.json` takes pr
 
 The script builds the x86 launcher, sidecar and updater, the x64 Iroh helper and Discord companion, runs local CTests, and stages the product. It checks source identity, patched GGPO dependencies and staged hashes, then writes `build/current/build-provenance.json`. Staging does not install into the game.
 
+After the first successful dependency install, subsequent builds reuse the designated vcpkg tree while the manifest, vcpkg configuration, overlays, vcpkg version and required artifacts still match. To explicitly refresh that tree, pass `-RefreshDependencies` to `build-current.ps1` or `setup-build.ps1`.
+
 `-SkipTests` is available for development; packaging rejects a receipt without passing tests.
 The local suite excludes public-network and live Discord tests. Explicit helper network testing is available through `scripts/test-current-network.ps1`; it does not establish actual SF4 gameplay acceptance.
 

@@ -1,4 +1,4 @@
-param([switch]$SkipTests, [switch]$SelfTest, [switch]$CompilerCache, [string]$VisualStudioPath = '', [string]$VcpkgRoot = '',
+param([switch]$SkipTests, [switch]$SelfTest, [switch]$CompilerCache, [switch]$RefreshDependencies, [string]$VisualStudioPath = '', [string]$VcpkgRoot = '',
       [string]$DiscordSdkArchive = $env:SF4E_DISCORD_SDK_ARCHIVE)
 $ErrorActionPreference = 'Stop'
 $repo = Split-Path $PSScriptRoot -Parent
@@ -17,7 +17,7 @@ $stage = Join-Path $repo $target.installDirectory
 # earlier run's passing receipt for this one.
 Remove-Item -LiteralPath (Join-Path $build 'build-provenance.json') -ErrorAction SilentlyContinue
 if (!$DiscordSdkArchive) { throw 'Set -DiscordSdkArchive or SF4E_DISCORD_SDK_ARCHIVE to the official archive matching cmake/discord-sdk-pin.json.' }
-& (Join-Path $PSScriptRoot 'build-current-dependencies.ps1') -VisualStudioPath $tools.VisualStudioPath -VcpkgRoot $tools.VcpkgRoot
+& (Join-Path $PSScriptRoot 'build-current-dependencies.ps1') -VisualStudioPath $tools.VisualStudioPath -VcpkgRoot $tools.VcpkgRoot -Refresh:$RefreshDependencies
 $dependencies = Join-Path $build 'dependencies'
 $before = Get-SourceFingerprint $repo
 $vs = $tools.VisualStudioPath
@@ -46,7 +46,7 @@ $compilerCacheOptions = if ($CompilerCache) {
     if (!$ccacheVersion -or [version]$ccacheVersion -lt [version]'4.6') { throw "-CompilerCache needs ccache 4.6 or newer; $ccache is '$ccacheVersion'." }
     "-DCMAKE_C_COMPILER_LAUNCHER=$ccache", "-DCMAKE_CXX_COMPILER_LAUNCHER=$ccache", '-DCMAKE_MSVC_DEBUG_INFORMATION_FORMAT=Embedded'
 } else { '-UCMAKE_C_COMPILER_LAUNCHER', '-UCMAKE_CXX_COMPILER_LAUNCHER', '-UCMAKE_MSVC_DEBUG_INFORMATION_FORMAT' }
-& $cmake -S $repo -B $build -G Ninja '-U*_DIR' '-UZLIB_*' '-ULIB_DETOURS' '-USF4E_JSON_INCLUDE' '-UFIND_PACKAGE_MESSAGE_DETAILS_*' "-DCMAKE_MAKE_PROGRAM=$vs/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSF4E_DEVELOPER_UI=OFF "-DCMAKE_TOOLCHAIN_FILE=$($tools.VcpkgRoot)/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=x86-windows-wchar-filenames "-DVCPKG_INSTALLED_DIR=$dependencies" -DVCPKG_MANIFEST_INSTALL=OFF -DSF4E_BUILD_IROH_HELPER=ON "-DSF4E_STAGING_BRIDGE=$stagingBridge" "-DSF4E_SELFTEST=$selfTestOption" -DSF4E_BUILD_DISCORD=ON "-DSF4E_DISCORD_SDK_ARCHIVE=$DiscordSdkArchive" "-DCMAKE_INSTALL_PREFIX=$stage" @compilerCacheOptions
+& $cmake -S $repo -B $build -G Ninja '-U*_DIR' '-UZLIB_*' '-ULIB_DETOURS' '-USF4E_JSON_INCLUDE' '-USF4E_CARGO_EXECUTABLE' '-UFIND_PACKAGE_MESSAGE_DETAILS_*' "-DCMAKE_MAKE_PROGRAM=$vs/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSF4E_DEVELOPER_UI=OFF "-DCMAKE_TOOLCHAIN_FILE=$($tools.VcpkgRoot)/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=x86-windows-wchar-filenames "-DVCPKG_INSTALLED_DIR=$dependencies" -DVCPKG_MANIFEST_INSTALL=OFF -DSF4E_BUILD_IROH_HELPER=ON "-DSF4E_STAGING_BRIDGE=$stagingBridge" "-DSF4E_SELFTEST=$selfTestOption" -DSF4E_BUILD_DISCORD=ON "-DSF4E_DISCORD_SDK_ARCHIVE=$DiscordSdkArchive" "-DCMAKE_INSTALL_PREFIX=$stage" @compilerCacheOptions
 if ($LASTEXITCODE) { throw 'Configure failed' }
 Assert-CMakeSource $repo $build
 if (Get-Content -LiteralPath (Join-Path $build 'CMakeCache.txt') | Where-Object { $_ -match '^([^#/:]+):[^=]+=.*sf4-display-dxvk' }) {
