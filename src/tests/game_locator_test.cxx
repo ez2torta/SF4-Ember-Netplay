@@ -87,8 +87,10 @@ int main() {
     for (std::size_t length = 0; length < Nested.rfind('}'); ++length)
         CHECK(ParseLibraryFolders(Nested.substr(0, length)).empty());
     CHECK(ParseLibraryFolders(R"vdf("libraryfolders" { "1" "D:\\Lib)vdf").empty());
-    CHECK(ParseLibraryFolders(R"vdf("libraryfolders" { "1" "D:\\Lib\)vdf").empty());
-    CHECK(ParseLibraryFolders(R"vdf("libraryfolders" { "1" "D:\\Lib\")vdf").empty());
+    const std::string danglingBackslash = R"vdf("libraryfolders" { "1" "D:\\Lib)vdf" "\\";
+    const std::string escapedClosingQuote = R"vdf("libraryfolders" { "1" "D:\\Lib)vdf" "\\\"";
+    CHECK(ParseLibraryFolders(danglingBackslash).empty());
+    CHECK(ParseLibraryFolders(escapedClosingQuote).empty());
     CHECK(ParseLibraryFolders(R"vdf("libraryfolders" { "1" "D:\\Lib" } })vdf").empty());
     CHECK(ParseLibraryFolders(R"vdf("libraryfolders" { "1" "D:\\Lib" } "extra" { })vdf").empty());
     CHECK(ParseLibraryFolders(R"vdf("libraryfolders" { "1" "D:\\Lib" } / not a comment)vdf").empty());
