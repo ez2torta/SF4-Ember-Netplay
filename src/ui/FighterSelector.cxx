@@ -609,7 +609,7 @@ bool FighterSelector::Draw(selection::Pick& pick,bool editionSelect,SelectionArt
  const bool selectSaves=screen=="roster"||screen=="favourites"||screen=="costumes"||screen=="colors"||screen=="ultra"||screen=="stage"||pool;
  const std::string status=!selectionError.empty()?selectionError:!notice_.empty()?notice_:
   loc::T(!editable?"selection.status_locked":screen=="favourites"?"selection.status_favourites":
-   screen=="roster"&&hasFavourites?"selection.status_roster":
+   screen=="roster"&&hasFavourites&&!KeyboardPrompts()?"selection.status_roster":
    selectSaves?"selection.status_editable":
    screen=="home"||screen=="appearance"?"selection.status_browse":"selection.status_adjust");
  // stableStatus: the galleries must not shift under a highlight when the

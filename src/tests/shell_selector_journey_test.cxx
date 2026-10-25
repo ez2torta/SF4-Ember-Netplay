@@ -22,6 +22,41 @@ void SelectorPages() {
  at("options",false);Check(detail("handicap")==loc::T("selection.locked_detail")&&status==loc::T("selection.status_locked"),"A locked options page kept its editable wording");
  SetMenuEntriesProbe({});SetMenuStatusProbe({});
 }
+// RB toggles the exact focused roster combination, opens the favourites card,
+// and returns from the favourites page without forwarding a room shortcut.
+void SelectorFavouriteShortcut() {
+ using namespace sf4e;Harness h;FighterSelector selector;selection::Pick live;
+ const auto availability=[](int fighter){
+  selection::Availability a;a.ready=true;
+  for(int costume=0;costume<selection::CostumeCount(fighter);++costume){
+   a.costumes|=1u<<costume;a.colors[costume]=(1u<<selection::ColorCount(fighter,costume))-1;
+  }
+  a.personalActions=0x3ff;return a;
+ };
+ std::vector<selection::Pick> picks;FavouritesAccess favourites;favourites.picks=&picks;
+ favourites.remembered=[](int fighter){selection::Pick p;p.fighter=fighter;return p;};
+ std::vector<MenuEntry> rows;std::string status;SetMenuEntriesProbe([&](const std::vector<MenuEntry>& r){rows=r;});
+ SetMenuStatusProbe([&](const char* text,Tone){status=text;});SetMenuGlyphs(input::PadKeyboard,0,0);
+ const auto frame=[&](unsigned buttons=0){h.imgui.io.DeltaTime=1.f/60;SetMenuInput({buttons,0});ImGui::NewFrame();
+  ImGui::Begin("Selector favourites shortcut");selector.Draw(live,true,nullptr,availability,nullptr,true,{},nullptr,nullptr,&favourites);ImGui::End();ImGui::Render();};
+ const auto press=[&](unsigned button){frame();frame(button);frame();};
+ selector.Navigation().Home();selector.Navigation().Push("roster");frame();frame();
+ const int target=selection::RosterDisplayOrder[1];const std::string card="fighter-"+std::to_string(target);
+ selector.Navigation().Focus(card,rows);frame();
+ Check(status==loc::T("selection.status_editable"),"The keyboard roster status promised an RB shortcut");
+ SetMenuGlyphs(input::PadXInput,input::xinput::A,input::xinput::B);NoteMenuDevice(MenuInput::Favourite);NoteMenuDevice(0);frame();
+ Check(status==loc::T("selection.status_roster"),"The pad roster status did not explain its favourites shortcut");
+ press(MenuInput::Favourite);
+ Check(picks.size()==1&&picks.front()==selection::FavouriteCandidate(favourites.remembered(target),true,availability(target)),
+  "RB did not pin the exact focused roster combination");
+ press(MenuInput::Favourite);
+ Check(picks.empty(),"RB did not unpin the focused combination");
+ selector.Navigation().Focus("favourites",rows);frame();press(MenuInput::Favourite);
+ Check(selector.Navigation().Screen()=="favourites","RB on the favourites card did not open its page");
+ press(MenuInput::Favourite);
+ Check(selector.Navigation().Screen()=="roster","RB on the favourites page did not return to the roster");
+ SetMenuEntriesProbe({});SetMenuStatusProbe({});SetMenuGlyphs(input::PadKeyboard,0,0);
+}
 // The selector the shell opens from Home starts on its first page too.
 void SelectorFromHome() {
  using namespace sf4e;Harness h;FighterSelector selector;selection::Pick pick;

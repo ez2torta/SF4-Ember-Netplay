@@ -21,5 +21,6 @@ void SessionReports();
 void RecoveryWindow();
 void ProblemReportJourneys();
 void SelectorPages();
+void SelectorFavouriteShortcut();
 void SelectorFromHome();
 void DeveloperSelectors();

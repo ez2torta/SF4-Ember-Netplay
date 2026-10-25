@@ -571,7 +571,10 @@ int main(int argc, char** argv) {
              view.hintFighter="Ken";view.hintAppearance=ShortAppearanceLabel(hint);view.hintUltra=ShortUltraLabel(hint.ultra);}
             FighterSelector selector;selection::Pick pick;int stage=0;selection::RandomPool stagePool(std::vector<std::int64_t>{0,15});
             const selection::InstalledContent* selectorContent=nullptr;
-            auto availability=[](int id){selection::Availability a;a.ready=true;a.personalActions=0x3ff;
+            std::vector<selection::Pick> favouritePicks;
+            FavouritesAccess favouritesAccess;favouritesAccess.picks=&favouritePicks;
+            bool favouritesScenario=false;
+            auto availability=[](int id){selection::Availability a;a.ready=true;a.costumes=1u;a.personalActions=0x3ff;
                 for(int c=0;c<selection::CostumeCount(id);++c){a.costumes|=1u<<c;a.colors[c]=(1u<<selection::ColorCount(id,c))-1;}return a;};
             training::View training;training.available=training.ready=training.checkpoint=true;training.generation=static_cast<unsigned>(size.w+size.dpi*100);
             training.lengths[0]=120;training.lengths[2]=45;training.on[0]=true;training.playable=training.replyable=1u; // Slot 1 on, slot 3 off.
@@ -612,7 +615,7 @@ int main(int argc, char** argv) {
                             view.publicRooms.answered=a.tournament.request;view.publicRooms.failure.clear();
                             view.publicRooms.admission.room.id=a.tournament.roomId;
                         }
-                        return true;},[&]{selector.Draw(pick,true,art.get(),availability,&stage,view.canEditSelection,{},&stagePool,selectorContent);});
+                        return true;},[&]{selector.Draw(pick,true,art.get(),availability,&stage,view.canEditSelection,{},&stagePool,selectorContent,favouritesScenario?&favouritesAccess:nullptr);});
                     else if(mode==1)DrawTrainingFlyout(training,[&](training::Command c){trainingCommand=c;return acceptTraining;});
                     else if(mode==4)DrawRecoveryMenu(recoveryMenu,recoveryState,recoveryMessage,recoveryUpdates,Tone::Error,false,true,&recoveryPick,recoveryReport);
                     if(mode==8)DrawReportPreviewMode(reportPanel,reportState);
@@ -789,6 +792,36 @@ int main(int argc, char** argv) {
             draw(nullptr,MenuInput::Select,1);draw();
             Require(stagePool.Excluded()==std::vector<int>{15},"Select did not put a skipped stage back in the Random pool");
             ShootCustomContent(selector,pick,stage,stagePool,selectorContent,draw);
+            // Favourites issue/PR captures: actual selector cards with two
+            // complete pinned combinations, at the 1080p quick-run size.
+            if(!translations){
+                const auto savedScreenshotPick=pick;pick=selection::Pick{};
+                SetMenuGlyphs(input::PadXInput,input::xinput::A,input::xinput::B);
+                NoteMenuDevice(MenuInput::Favourite);NoteMenuDevice(0);
+                favouritePicks.clear();
+                selection::Pick favouriteA;favouriteA.fighter=0;favouriteA.costume=1;favouriteA.ultra=0;
+                favouriteA.color=0;favouriteA.personalAction=1;favouriteA.edition=selection::UltraEdition;
+                selection::Pick favouriteB;favouriteB.fighter=1;favouriteB.costume=0;favouriteB.ultra=1;
+                favouriteB.color=0;favouriteB.personalAction=2;favouriteB.edition=selection::UltraEdition;
+                favouritePicks={favouriteA,favouriteB};
+                favouritesScenario=true;
+                if(art)for(const auto& favourite:favouritePicks){
+                    auto image=art->Appearance(favourite.fighter,favourite.costume,favourite.color);
+                    const auto deadline=std::chrono::steady_clock::now()+std::chrono::seconds(5);
+                    while(!image.texture&&!image.missing&&std::chrono::steady_clock::now()<deadline){
+                        art->Pump();image=art->Appearance(favourite.fighter,favourite.costume,favourite.color);
+                        if(!image.texture&&!image.missing)std::this_thread::sleep_for(std::chrono::milliseconds(5));
+                    }
+                    Require(image.texture&&!image.missing,"A favourite preview did not load for its screenshot");
+                }
+                selector.Navigation().Home();selector.Navigation().Push("roster");
+                // The roster has many independent async preview requests; let
+                // its full card grid settle before taking the capture.
+                for(int warm=0;warm<80;++warm){draw(nullptr,0,1);std::this_thread::sleep_for(std::chrono::milliseconds(5));}
+                draw("selection-roster-favourites");
+                selector.Navigation().Home();selector.Navigation().Push("favourites");draw(nullptr,0,30);draw("selection-favourites-page");
+                favouritePicks.clear();favouritesScenario=false;selector.Navigation().Home();pick=savedScreenshotPick;
+            }
             selector.Navigation().Home();selector.Navigation().Push("roster");draw();
             // The grid opens on its first card (not Ryu in USFIV's order), so two steps right land on a fighter other than the saved Ryu.
             const int saved=pick.fighter;draw(nullptr,MenuInput::Right,1);draw(nullptr,0,1);draw(nullptr,MenuInput::Right,1);draw("fighter-focus");

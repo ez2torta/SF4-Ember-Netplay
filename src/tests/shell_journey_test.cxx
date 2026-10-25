@@ -7,7 +7,7 @@ int main() {
  try {
   ButtonPromptJourneys(); ControllerJourneys(); ButtonLayoutJourneys(); RoomJourneys(); ReplayJourneys(); TrainingSettingsAndHome(); TrainingFromRoom(); PracticeRoomCreate(); DelayPolicyCreate(); DelayPolicyInRoom(); TrainingInRoom();
   KeyboardJourneys(); ChatJourneys(); NoticeOverDialogs(); LanguageSaveFailure(); UpdateLaunchJourneys();
-  SessionReports(); RecoveryWindow(); ProblemReportJourneys(); SelectorPages(); SelectorFromHome();
+  SessionReports(); RecoveryWindow(); ProblemReportJourneys(); SelectorPages(); SelectorFavouriteShortcut(); SelectorFromHome();
   DeveloperSelectors(); TrainingJourneys(); PresentationJourneys(); AppearanceGalleries();
   std::cout << "Shell journeys through the renderer passed.\n";
   return 0;
