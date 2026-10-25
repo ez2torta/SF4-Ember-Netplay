@@ -2387,6 +2387,9 @@ msgstr "ルール無効"
 msgid "selection.status_favourites"
 msgstr "Select で適用 / Delete か星で削除 / 戻るで一つ前へ。"
 
+msgid "selection.status_roster"
+msgstr "Select で保存 / RB でお気に入り / 戻るで一つ前へ。"
+
 msgid "menu.hint.add_favourite"
 msgstr "お気に入りに追加"
 
@@ -3171,6 +3174,9 @@ msgstr "対戦席{0}：この対戦席の遅延、接続テスト、ルール、
 
 msgid "room.legend_fighter"
 msgstr "キャラ"
+
+msgid "room.legend_favourites"
+msgstr "お気に入り"
 
 msgid "room.legend_options"
 msgstr "設定"

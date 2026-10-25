@@ -2388,6 +2388,9 @@ msgstr "правило выкл."
 msgid "selection.status_favourites"
 msgstr "Select применяет / Delete или звезда удаляет / Назад возвращает на уровень."
 
+msgid "selection.status_roster"
+msgstr "Select сохраняет / RB закрепляет или убирает / Назад возвращает на уровень."
+
 msgid "menu.hint.add_favourite"
 msgstr "Добавить в избранное"
 
@@ -3171,6 +3174,9 @@ msgstr "Ячейка {0}: Задержка, проверка связи, пра�
 
 msgid "room.legend_fighter"
 msgstr "Боец"
+
+msgid "room.legend_favourites"
+msgstr "Избранное"
 
 msgid "room.legend_options"
 msgstr "Опции"

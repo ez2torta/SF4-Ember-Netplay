@@ -2387,6 +2387,9 @@ msgstr "규칙 꺼짐"
 msgid "selection.status_favourites"
 msgstr "Select 적용 / Delete 또는 별 삭제 / 뒤로 한 단계."
 
+msgid "selection.status_roster"
+msgstr "Select 저장 / RB 즐겨찾기 / 뒤로 한 단계."
+
 msgid "menu.hint.add_favourite"
 msgstr "즐겨찾기에 추가"
 
@@ -3171,6 +3174,9 @@ msgstr "테이블 {0}: 이 테이블의 지연, 연결 확인, 규칙, 대기열
 
 msgid "room.legend_fighter"
 msgstr "캐릭터"
+
+msgid "room.legend_favourites"
+msgstr "즐겨찾기"
 
 msgid "room.legend_options"
 msgstr "옵션"

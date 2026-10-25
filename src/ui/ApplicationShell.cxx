@@ -807,7 +807,7 @@ void ApplicationShell::Draw(const ShellView& v,bool* open,const Submit& submit,c
  SetGameplayLayoutPrompts(v);
  const bool keys=KeyboardPrompts();
  std::vector<LegendHint> roomHints=keys?std::vector<LegendHint>{{"F",loc::T("room.legend_fighter")},{"T",loc::T("room.legend_options")},{"C",loc::T("room.chat")}}:
-  std::vector<LegendHint>{{"X",loc::T("room.legend_fighter")},{"Y",loc::T("room.legend_options")},{"View",loc::T("room.chat")}};
+  std::vector<LegendHint>{{"X",loc::T("room.legend_fighter")},{"Y",loc::T("room.legend_options")},{"View",loc::T("room.chat")},{"RB",loc::T("room.legend_favourites")}};
  if(nav.Screen()=="selection"&&selection){
   // The selector names where its Back goes and shows the room's shortcuts it hands back.
   SetEmbeddedReturn({MenuScreenLabel(nav.Parent()),inRoom?roomHints:std::vector<LegendHint>{},selectionFresh_,selectionOpenOn_});

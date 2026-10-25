@@ -2387,6 +2387,9 @@ msgstr "regel uit"
 msgid "selection.status_favourites"
 msgstr "Select past toe / Del of de ster verwijdert / Terug gaat een niveau terug."
 
+msgid "selection.status_roster"
+msgstr "Select slaat op / RB zet vast of los / Terug gaat een niveau terug."
+
 msgid "menu.hint.add_favourite"
 msgstr "Aan favorieten toevoegen"
 
@@ -3170,6 +3173,9 @@ msgstr "Tafel {0}: Vertraging, verbindingstest, tafelregels, wachtrij en kijken 
 
 msgid "room.legend_fighter"
 msgstr "Vechter"
+
+msgid "room.legend_favourites"
+msgstr "Favorieten"
 
 msgid "room.legend_options"
 msgstr "Opties"

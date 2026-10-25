@@ -2387,6 +2387,9 @@ msgstr "rule off"
 msgid "selection.status_favourites"
 msgstr "Select applies / Delete or the star removes / Back returns one level."
 
+msgid "selection.status_roster"
+msgstr "Select saves / RB pins or unpins / Back returns one level."
+
 msgid "menu.hint.add_favourite"
 msgstr "Add to favourites"
 
@@ -2943,6 +2946,10 @@ msgid "room.table_options.detail"
 msgstr "Table {0}: Delay, connection check, table rules, queue and watching for this table."
 msgid "room.legend_fighter"
 msgstr "Fighter"
+
+msgid "room.legend_favourites"
+msgstr "Favourites"
+
 msgid "room.legend_options"
 msgstr "Options"
 msgid "room.choice.watch"

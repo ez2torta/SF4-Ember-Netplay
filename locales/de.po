@@ -2387,6 +2387,9 @@ msgstr "Regel aus"
 msgid "selection.status_favourites"
 msgstr "Select wendet an / Entf oder der Stern entfernt / Zurück geht eine Ebene zurück."
 
+msgid "selection.status_roster"
+msgstr "Select speichert / RB heftet an oder ab / Zurück geht eine Ebene zurück."
+
 msgid "menu.hint.add_favourite"
 msgstr "Zu Favoriten hinzufügen"
 
@@ -3170,6 +3173,9 @@ msgstr "Tisch {0}: Verzögerung, Verbindungstest, Tischregeln, Warteschlange und
 
 msgid "room.legend_fighter"
 msgstr "Kämpfer"
+
+msgid "room.legend_favourites"
+msgstr "Favoriten"
 
 msgid "room.legend_options"
 msgstr "Optionen"

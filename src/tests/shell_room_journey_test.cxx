@@ -163,6 +163,16 @@ void RoomJourneys() {
  // The selector names the board as its way back and shows the room's shortcuts.
  Check(EmbeddedReturnContext().exitName=="Room"&&EmbeddedReturnContext().shortcutHints.size()==3,
   "The fighter selector does not know it returns to the room or which shortcuts it forwards");
+ // The pad's legend also offers RB for the favourites page; the keyboard has
+ // no key of its own for it, so its legend stays as it was. Earlier screens of
+ // this journey left the keyboard's glyphs up, so the pad takes them back
+ // first, as the overlay does each frame for the assigned controller; the
+ // shell reads the glyphs before the selector does, so the pad needs two frames.
+ SetMenuGlyphs(input::PadXInput,0x40000,0x20000);
+ h.Frame(MenuInput::Down);h.Frame(MenuInput::Right);
+ Check(EmbeddedReturnContext().shortcutHints.size()==4,"The pad's legend does not offer the favourites shortcut");
+ // Back to the keyboard for the rest of the journey.
+ ImGui::GetIO().AddKeyEvent(ImGuiKey_UpArrow,true);h.Frame();ImGui::GetIO().AddKeyEvent(ImGuiKey_UpArrow,false);
  // X opens the selector on the roster, to change the fighter; leaving it on
  // another sub-page and coming back by X opens the roster again.
  Check(selector.Navigation().Screen()=="roster","X did not open the selector on the roster");

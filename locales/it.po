@@ -2387,6 +2387,9 @@ msgstr "regola spenta"
 msgid "selection.status_favourites"
 msgstr "Select applica / Canc o la stella rimuove / Indietro torna di un livello."
 
+msgid "selection.status_roster"
+msgstr "Select salva / RB fissa o rimuove / Indietro torna di un livello."
+
 msgid "menu.hint.add_favourite"
 msgstr "Aggiungi ai preferiti"
 
@@ -3170,6 +3173,9 @@ msgstr "Tavolo {0}: Ritardo, test di connessione, regole, coda e spettatori di q
 
 msgid "room.legend_fighter"
 msgstr "Lottatore"
+
+msgid "room.legend_favourites"
+msgstr "Preferiti"
 
 msgid "room.legend_options"
 msgstr "Opzioni"

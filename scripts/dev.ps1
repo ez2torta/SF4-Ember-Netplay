@@ -58,8 +58,10 @@ switch ($Target.ToLowerInvariant()) {
         $tools = Get-EmberToolPaths $repo $VisualStudioPath $vcpkgRoot
         $ctest = Join-Path $tools.VisualStudioPath 'Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\ctest.exe'
         if (!(Test-Path -LiteralPath $ctest)) { throw "No encontre ctest en $ctest." }
+        # HelperRust, EmberRust and BridgeSdk need rustc, which this PC does not
+        # have; they build nothing else.
         $arguments = @('--test-dir', $build, '--output-on-failure',
-            '-E', 'Iroh(Room|Game|Authorized|Recovery)|CustomRoom(FourTables|Spectators)|DiscordSmoke')
+            '-E', 'Iroh(Room|Game|Authorized|Recovery)|CustomRoom(FourTables|Spectators)|DiscordSmoke|HelperRust|EmberRust|BridgeSdk')
         # Optional test names narrow the run, as in 'dev test Gamepad Slots'.
         if ($Rest.Count -gt 0) { $arguments += @('-R', ($Rest -join '|')) }
         & $ctest @arguments

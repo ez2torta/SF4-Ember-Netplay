@@ -2387,6 +2387,9 @@ msgstr "规则关闭"
 msgid "selection.status_favourites"
 msgstr "Select 应用 / Delete 或收藏移除 / 返回上一级。"
 
+msgid "selection.status_roster"
+msgstr "Select 保存 / RB 收藏或取消 / 返回上一级。"
+
 msgid "menu.hint.add_favourite"
 msgstr "加入收藏"
 
@@ -3171,6 +3174,9 @@ msgstr "对战席 {0}：此对战席的延迟、连接检测、规则、队列�
 
 msgid "room.legend_fighter"
 msgstr "角色"
+
+msgid "room.legend_favourites"
+msgstr "收藏"
 
 msgid "room.legend_options"
 msgstr "选项"

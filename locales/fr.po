@@ -2387,6 +2387,9 @@ msgstr "règle désactivée"
 msgid "selection.status_favourites"
 msgstr "Select applique / Suppr ou l'étoile retire / Retour revient d'un niveau."
 
+msgid "selection.status_roster"
+msgstr "Select enregistre / RB épingle ou retire / Retour revient d'un niveau."
+
 msgid "menu.hint.add_favourite"
 msgstr "Ajouter aux favoris"
 
@@ -3170,6 +3173,9 @@ msgstr "Table {0} : Délai, test de connexion, règles, file et spectateurs de c
 
 msgid "room.legend_fighter"
 msgstr "Combattant"
+
+msgid "room.legend_favourites"
+msgstr "Favoris"
 
 msgid "room.legend_options"
 msgstr "Options"

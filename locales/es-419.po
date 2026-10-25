@@ -2273,6 +2273,9 @@ msgstr "regla apagada"
 msgid "selection.status_favourites"
 msgstr "Select aplica / Supr o la estrella quita / Atrás vuelve un nivel."
 
+msgid "selection.status_roster"
+msgstr "Select guarda / RB fija o quita / Atrás vuelve un nivel."
+
 msgid "menu.hint.add_favourite"
 msgstr "Añadir a favoritos"
 
@@ -2829,6 +2832,10 @@ msgid "room.table_options.detail"
 msgstr "Mesa {0}: Retraso, prueba de conexión, reglas, cola y observación de esta mesa."
 msgid "room.legend_fighter"
 msgstr "Luchador"
+
+msgid "room.legend_favourites"
+msgstr "Favoritos"
+
 msgid "room.legend_options"
 msgstr "Opciones"
 msgid "room.choice.watch"

@@ -609,6 +609,7 @@ bool FighterSelector::Draw(selection::Pick& pick,bool editionSelect,SelectionArt
  const bool selectSaves=screen=="roster"||screen=="favourites"||screen=="costumes"||screen=="colors"||screen=="ultra"||screen=="stage"||pool;
  const std::string status=!selectionError.empty()?selectionError:!notice_.empty()?notice_:
   loc::T(!editable?"selection.status_locked":screen=="favourites"?"selection.status_favourites":
+   screen=="roster"&&hasFavourites?"selection.status_roster":
    selectSaves?"selection.status_editable":
    screen=="home"||screen=="appearance"?"selection.status_browse":"selection.status_adjust");
  // stableStatus: the galleries must not shift under a highlight when the
@@ -618,7 +619,11 @@ bool FighterSelector::Draw(selection::Pick& pick,bool editionSelect,SelectionArt
  // Delete unpins the focused favourite instead of leaving the seat.
  const bool leaveRemoves=a.kind==MenuAction::Shortcut&&a.delta==static_cast<int>(MenuInput::Leave)&&
   screen=="favourites"&&hasFavourites&&!favourites->picks->empty();
- if(a.kind==MenuAction::Close||(a.kind==MenuAction::Shortcut&&!leaveRemoves))ForwardMenuAction(a);
+ // RB acts on the focused card: it pins or unpins that combination, opens the
+ // page from the favourites card, and goes back from the page. Elsewhere it is
+ // consumed so the room's own shortcuts do not see it.
+ const bool favouriteShortcut=a.kind==MenuAction::Shortcut&&a.delta==static_cast<int>(MenuInput::Favourite);
+ if(a.kind==MenuAction::Close||(a.kind==MenuAction::Shortcut&&!leaveRemoves&&!favouriteShortcut))ForwardMenuAction(a);
  // Opened for one change, Back from its page goes back to where it came from.
  if(!openOn_.empty()&&a.kind==MenuAction::Returned&&screen==openOn_)ForwardMenuAction({MenuAction::Close});
  // A pick is done: back to where fighter select was opened from.
@@ -638,19 +643,28 @@ bool FighterSelector::Draw(selection::Pick& pick,bool editionSelect,SelectionArt
   else if(result==FavouriteAdd::Full)notice_=loc::Tf("selection.favourite_full",FavouriteLimit);
   else notice_=loc::T(result==FavouriteAdd::Duplicate?"selection.favourite_duplicate":"runtime.selection_combination_unavailable");
  };
+ const auto toggleFavourite=[&](int fighter){
+  const auto found=std::find(favourites->picks->begin(),favourites->picks->end(),rosterCandidate(fighter));
+  if(found!=favourites->picks->end())removeFavourite(static_cast<std::size_t>(found-favourites->picks->begin()));
+  else addFavourite(fighter);
+ };
  if(a.kind!=MenuAction::None)notice_.clear();
+ // RB never has to reach the grid's footer: it acts on the focused card.
+ if(favouriteShortcut){
+  if(screen=="favourites")nav.Return();
+  else if(screen=="roster"){
+   const std::string focus=nav.Focus();
+   if(focus=="favourites")nav.Push("favourites");
+   else if(focus.compare(0,8,"fighter-")==0)toggleFavourite(std::stoi(focus.substr(8)));
+  }
+ }
  // A star press is settled on release, when the card's own button fires; that
  // button's action is dropped so only the star counts.
  if(!starId_.empty()&&!ImGui::IsMouseDown(ImGuiMouseButton_Left)&&
   (a.kind==MenuAction::None||a.kind==MenuAction::Activate)){
   if(a.kind==MenuAction::Activate)a={};
   if(screen=="favourites"&&starId_.compare(0,10,"favourite-")==0)removeFavourite(std::stoi(starId_.substr(10)));
-  else if(screen=="roster"&&starId_.compare(0,8,"fighter-")==0){
-   const int fighter=std::stoi(starId_.substr(8));
-   const auto found=std::find(favourites->picks->begin(),favourites->picks->end(),rosterCandidate(fighter));
-   if(found!=favourites->picks->end())removeFavourite(static_cast<std::size_t>(found-favourites->picks->begin()));
-   else addFavourite(fighter);
-  }
+  else if(screen=="roster"&&starId_.compare(0,8,"fighter-")==0)toggleFavourite(std::stoi(starId_.substr(8)));
   starId_.clear();
  }
  if(leaveRemoves){
